@@ -112,7 +112,7 @@ func main() {
 	shutdownCtx, shutdownCancel := context.WithTimeout(context.Background(), 30*time.Second)
 	defer shutdownCancel()
 
-	if err = server.Shutdown(shutdownCtx); err != nil {
+	if err = server.Stop(shutdownCtx); err != nil {
 		slog.Error("Failed to shutdown server gracefully", sl.Err(err))
 	}
 

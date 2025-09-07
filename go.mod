@@ -8,6 +8,7 @@ require (
 	github.com/gin-gonic/gin v1.10.0
 	github.com/go-redis/redis/v8 v8.11.5
 	github.com/golang-migrate/migrate/v4 v4.17.0
+	github.com/gorilla/mux v1.7.4
 	github.com/joho/godotenv v1.5.1
 	github.com/lib/pq v1.10.9
 )

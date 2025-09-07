@@ -7,7 +7,7 @@ import (
 	"github.com/makhkets/wildberries-l0/internal/service"
 )
 
-// Handler структура для HTTP хендлеров
+// Handler содержит все зависимости для API handlers
 type Handler struct {
 	services service.Order
 }
@@ -19,27 +19,28 @@ func NewHandler(services service.Order) *Handler {
 	}
 }
 
-// InitRoutes инициализирует маршруты
+// InitRoutes настраивает и возвращает Gin router с настроенными маршрутами
 func (h *Handler) InitRoutes() *gin.Engine {
+	// Создаем Gin router
 	router := gin.New()
 
-	// Middleware
-	router.Use(gin.Logger())
+	// Добавляем middleware
+	router.Use(LoggingMiddleware())
+	router.Use(RequestIDMiddleware())
+	router.Use(CORSMiddleware())
 	router.Use(gin.Recovery())
-	router.Use(h.corsMiddleware())
 
-	// Health check
-	router.GET("/health", h.healthCheck)
-
-	// API группа
-	api := router.Group("/api/v1")
+	// API v1 группа
+	v1 := router.Group("/api/v1")
 	{
-		// Группа заказов
-		orders := api.Group("/orders")
+		// Health check
+		v1.GET("/health", h.HealthCheck)
+
+		// Orders routes
+		orders := v1.Group("/orders")
 		{
-			orders.GET("/:uid", h.getOrderByUID)
-			orders.POST("/", h.createOrder)
-			orders.GET("/", h.getAllOrders)
+			orders.POST("", h.CreateOrder)       // POST /api/v1/orders
+			orders.GET("/:uid", h.GetOrderByUID) // GET /api/v1/orders/{uid}
 		}
 	}
 

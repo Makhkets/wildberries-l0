@@ -1,3 +1,6 @@
 .env
 .env.local
 Dockerfile
+
+.idea
+model.json
