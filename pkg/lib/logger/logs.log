@@ -1,0 +1,377 @@
+{"timestamp":"16:07:07.073","level":"DEBUG","message":"initializing migrator with configuration ","data":{"config":{"DB":{"Db":"orders","Host":"postgres","Password":"1324","Port":5432,"User":"postgres"},"Environment":"development","HTTPPort":8081,"Redis":{"Host":"redis","Port":6379}}}}
+{"timestamp":"16:09:09.392","level":"ERROR","message":"Failed to create migrator ","data":{"error":{}}}
+{"timestamp":"16:30:30.514","level":"DEBUG","message":"initializing migrator with configuration ","data":{"config":{"DB":{"Db":"orders","Host":"postgres","Password":"1324","Port":5432,"User":"postgres"},"Environment":"development","HTTPPort":8081,"Redis":{"Host":"redis","Port":6379}}}}
+{"timestamp":"16:32:32.826","level":"ERROR","message":"Failed to create migrator ","data":{"error":{}}}
+{"timestamp":"10:26:26.789","level":"INFO","message":"Starting application with configuration ","data":{"config":{"DB":{"Db":"orders","Host":"postgres","Password":"postgres","Port":5432,"User":"postgres"},"Environment":"development","HTTPPort":8080,"Redis":{"Host":"redis","Port":6379}}}}
+{"timestamp":"10:26:26.814","level":"INFO","message":"Attempting to connect to PostgreSQL ","data":{"database":"orders","host":"postgres","port":5432}}
+{"timestamp":"10:29:29.113","level":"WARN","message":"Failed to ping database ","data":{"attempt":1,"error":{"Addr":null,"Err":{"Err":"no such host","IsNotFound":true,"IsTemporary":false,"IsTimeout":false,"Name":"postgres","Server":"","UnwrapErr":null},"Net":"tcp","Op":"dial","Source":null}}}
+{"timestamp":"10:33:33.396","level":"WARN","message":"Failed to ping database ","data":{"attempt":2,"error":{"Addr":null,"Err":{"Err":"no such host","IsNotFound":true,"IsTemporary":false,"IsTimeout":false,"Name":"postgres","Server":"","UnwrapErr":null},"Net":"tcp","Op":"dial","Source":null}}}
+{"timestamp":"10:37:37.680","level":"WARN","message":"Failed to ping database ","data":{"attempt":3,"error":{"Addr":null,"Err":{"Err":"no such host","IsNotFound":true,"IsTemporary":false,"IsTimeout":false,"Name":"postgres","Server":"","UnwrapErr":null},"Net":"tcp","Op":"dial","Source":null}}}
+{"timestamp":"10:41:41.959","level":"WARN","message":"Failed to ping database ","data":{"attempt":4,"error":{"Addr":null,"Err":{"Err":"no such host","IsNotFound":true,"IsTemporary":false,"IsTimeout":false,"Name":"postgres","Server":"","UnwrapErr":null},"Net":"tcp","Op":"dial","Source":null}}}
+{"timestamp":"10:46:46.246","level":"WARN","message":"Failed to ping database ","data":{"attempt":5,"error":{"Addr":null,"Err":{"Err":"no such host","IsNotFound":true,"IsTemporary":false,"IsTimeout":false,"Name":"postgres","Server":"","UnwrapErr":null},"Net":"tcp","Op":"dial","Source":null}}}
+{"timestamp":"10:28:28.245","level":"INFO","message":"Starting application with configuration ","data":{"config":{"DB":{"Db":"orders","Host":"localhost","Password":"1324","Port":5432,"User":"postgres"},"Environment":"development","HTTPPort":8080,"Redis":{"Host":"redis","Port":6379}}}}
+{"timestamp":"10:28:28.270","level":"INFO","message":"Attempting to connect to PostgreSQL ","data":{"database":"orders","host":"localhost","port":5432}}
+{"timestamp":"10:28:28.335","level":"INFO","message":"Successfully connected to PostgreSQL database \n","data":{}}
+{"timestamp":"10:28:28.395","level":"INFO","message":"Running migrations up... \n","data":{}}
+{"timestamp":"10:28:28.459","level":"INFO","message":"Migrations applied successfully \n","data":{}}
+{"timestamp":"10:28:28.460","level":"INFO","message":"Attempting to connect to Redis ","data":{"host":"redis","port":6379}}
+{"timestamp":"10:33:33.461","level":"WARN","message":"Failed to connect to Redis ","data":{"attempt":1,"error":{}}}
+{"timestamp":"10:40:40.463","level":"WARN","message":"Failed to connect to Redis ","data":{"attempt":2,"error":{}}}
+{"timestamp":"10:47:47.465","level":"WARN","message":"Failed to connect to Redis ","data":{"attempt":3,"error":{}}}
+{"timestamp":"10:13:13.021","level":"INFO","message":"Starting application with configuration ","data":{"config":{"DB":{"Db":"orders","Host":"localhost","Password":"1324","Port":5432,"User":"postgres"},"Environment":"development","HTTPPort":8080,"Redis":{"Host":"redis","Port":6379}}}}
+{"timestamp":"10:13:13.045","level":"INFO","message":"Attempting to connect to PostgreSQL ","data":{"database":"orders","host":"localhost","port":5432}}
+{"timestamp":"10:13:13.104","level":"INFO","message":"Successfully connected to PostgreSQL database \n","data":{}}
+{"timestamp":"10:13:13.155","level":"INFO","message":"Running migrations up... \n","data":{}}
+{"timestamp":"10:13:13.157","level":"INFO","message":"No migrations to apply \n","data":{}}
+{"timestamp":"10:13:13.157","level":"INFO","message":"Attempting to connect to Redis ","data":{"host":"redis","port":6379}}
+{"timestamp":"10:18:18.158","level":"WARN","message":"Failed to connect to Redis ","data":{"attempt":1,"error":{}}}
+{"timestamp":"10:25:25.160","level":"WARN","message":"Failed to connect to Redis ","data":{"attempt":2,"error":{}}}
+{"timestamp":"10:32:32.162","level":"WARN","message":"Failed to connect to Redis ","data":{"attempt":3,"error":{}}}
+{"timestamp":"10:33:33.821","level":"INFO","message":"Starting application with configuration ","data":{"config":{"DB":{"Db":"orders","Host":"localhost","Password":"1324","Port":5432,"User":"postgres"},"Environment":"development","HTTPPort":8080,"Redis":{"Host":"localhost","Port":6379}}}}
+{"timestamp":"10:33:33.846","level":"INFO","message":"Attempting to connect to PostgreSQL ","data":{"database":"orders","host":"localhost","port":5432}}
+{"timestamp":"10:33:33.895","level":"INFO","message":"Successfully connected to PostgreSQL database \n","data":{}}
+{"timestamp":"10:34:34.069","level":"INFO","message":"Running migrations up... \n","data":{}}
+{"timestamp":"10:34:34.071","level":"INFO","message":"No migrations to apply \n","data":{}}
+{"timestamp":"10:34:34.073","level":"INFO","message":"Attempting to connect to Redis ","data":{"host":"localhost","port":6379}}
+{"timestamp":"10:34:34.159","level":"WARN","message":"Failed to connect to Redis ","data":{"attempt":1,"error":{"Addr":{"IP":"::1","Port":6379,"Zone":""},"Err":{"Err":10061,"Syscall":"connectex"},"Net":"tcp","Op":"dial","Source":null}}}
+{"timestamp":"10:36:36.235","level":"WARN","message":"Failed to connect to Redis ","data":{"attempt":2,"error":{"Addr":{"IP":"::1","Port":6379,"Zone":""},"Err":{"Err":10061,"Syscall":"connectex"},"Net":"tcp","Op":"dial","Source":null}}}
+{"timestamp":"10:38:38.352","level":"WARN","message":"Failed to connect to Redis ","data":{"attempt":3,"error":{"Addr":{"IP":"::1","Port":6379,"Zone":""},"Err":{"Err":10061,"Syscall":"connectex"},"Net":"tcp","Op":"dial","Source":null}}}
+{"timestamp":"10:40:40.397","level":"WARN","message":"Failed to connect to Redis ","data":{"attempt":4,"error":{"Addr":{"IP":"::1","Port":6379,"Zone":""},"Err":{"Err":10061,"Syscall":"connectex"},"Net":"tcp","Op":"dial","Source":null}}}
+{"timestamp":"10:42:42.494","level":"WARN","message":"Failed to connect to Redis ","data":{"attempt":5,"error":{"Addr":{"IP":"::1","Port":6379,"Zone":""},"Err":{"Err":10061,"Syscall":"connectex"},"Net":"tcp","Op":"dial","Source":null}}}
+{"timestamp":"10:04:04.180","level":"INFO","message":"Starting application with configuration ","data":{"config":{"DB":{"Db":"orders","Host":"localhost","Password":"1324","Port":5432,"User":"postgres"},"Environment":"development","HTTPPort":8080,"Redis":{"Host":"localhost","Port":6379}}}}
+{"timestamp":"10:04:04.205","level":"INFO","message":"Attempting to connect to PostgreSQL ","data":{"database":"orders","host":"localhost","port":5432}}
+{"timestamp":"10:04:04.258","level":"INFO","message":"Successfully connected to PostgreSQL database \n","data":{}}
+{"timestamp":"10:04:04.307","level":"INFO","message":"Running migrations up... \n","data":{}}
+{"timestamp":"10:04:04.308","level":"INFO","message":"No migrations to apply \n","data":{}}
+{"timestamp":"10:04:04.308","level":"INFO","message":"Attempting to connect to Redis ","data":{"host":"localhost","port":6379}}
+{"timestamp":"10:04:04.311","level":"INFO","message":"Successfully connected to Redis \n","data":{}}
+{"timestamp":"10:04:04.311","level":"INFO","message":"Restoring cache from database... \n","data":{}}
+{"timestamp":"10:04:04.318","level":"ERROR","message":"Failed to restore cache from database ","data":{"error":{}}}
+{"timestamp":"10:04:04.318","level":"INFO","message":"Starting cache restoration from database \n","data":{}}
+{"timestamp":"10:04:04.319","level":"INFO","message":"Server started successfully ","data":{"port":8080}}
+{"timestamp":"10:04:04.319","level":"ERROR","message":"Failed to restore cache from database ","data":{"error":{}}}
+{"timestamp":"10:04:04.319","level":"INFO","message":"starting HTTP server ","data":{"addr":":8080"}}
+{"timestamp":"10:58:58.616","level":"INFO","message":"Shutting down server... \n","data":{}}
+{"timestamp":"10:58:58.616","level":"INFO","message":"shutting down HTTP server \n","data":{}}
+{"timestamp":"10:58:58.616","level":"INFO","message":"Server stopped \n","data":{}}
+{"timestamp":"10:58:58.616","level":"ERROR","message":"Server failed to start ","data":{"error":{}}}
+{"timestamp":"10:59:59.531","level":"INFO","message":"Starting application with configuration ","data":{"config":{"DB":{"Db":"orders","Host":"localhost","Password":"1324","Port":5432,"User":"postgres"},"Environment":"development","HTTPPort":8080,"Redis":{"Host":"localhost","Port":6379}}}}
+{"timestamp":"10:59:59.568","level":"INFO","message":"Attempting to connect to PostgreSQL ","data":{"database":"orders","host":"localhost","port":5432}}
+{"timestamp":"10:59:59.794","level":"INFO","message":"Successfully connected to PostgreSQL database \n","data":{}}
+{"timestamp":"10:59:59.969","level":"INFO","message":"Running migrations up... \n","data":{}}
+{"timestamp":"10:59:59.971","level":"INFO","message":"No migrations to apply \n","data":{}}
+{"timestamp":"10:59:59.971","level":"INFO","message":"Attempting to connect to Redis ","data":{"host":"localhost","port":6379}}
+{"timestamp":"10:59:59.972","level":"INFO","message":"Successfully connected to Redis \n","data":{}}
+{"timestamp":"10:59:59.972","level":"INFO","message":"Restoring cache from database... \n","data":{}}
+{"timestamp":"10:59:59.974","level":"ERROR","message":"Failed to restore cache from database ","data":{"error":{}}}
+{"timestamp":"10:59:59.976","level":"INFO","message":"Starting cache restoration from database \n","data":{}}
+{"timestamp":"10:59:59.977","level":"ERROR","message":"Failed to restore cache from database ","data":{"error":{}}}
+{"timestamp":"10:59:59.977","level":"INFO","message":"Server started successfully ","data":{"port":8080}}
+{"timestamp":"10:59:59.977","level":"INFO","message":"starting HTTP server ","data":{"addr":":8080"}}
+{"timestamp":"10:38:38.264","level":"INFO","message":"Shutting down server... \n","data":{}}
+{"timestamp":"10:38:38.264","level":"INFO","message":"shutting down HTTP server \n","data":{}}
+{"timestamp":"10:38:38.265","level":"ERROR","message":"Server failed to start ","data":{"error":{}}}
+{"timestamp":"10:39:39.842","level":"INFO","message":"Starting application with configuration ","data":{"config":{"DB":{"Db":"orders","Host":"localhost","Password":"1324","Port":5432,"User":"postgres"},"Environment":"development","HTTPPort":8080,"Redis":{"Host":"localhost","Port":6379}}}}
+{"timestamp":"10:39:39.867","level":"INFO","message":"Attempting to connect to PostgreSQL ","data":{"database":"orders","host":"localhost","port":5432}}
+{"timestamp":"10:39:39.916","level":"INFO","message":"Successfully connected to PostgreSQL database \n","data":{}}
+{"timestamp":"10:39:39.963","level":"INFO","message":"Running migrations up... \n","data":{}}
+{"timestamp":"10:39:39.963","level":"INFO","message":"No migrations to apply \n","data":{}}
+{"timestamp":"10:39:39.964","level":"INFO","message":"Attempting to connect to Redis ","data":{"host":"localhost","port":6379}}
+{"timestamp":"10:39:39.965","level":"INFO","message":"Successfully connected to Redis \n","data":{}}
+{"timestamp":"10:39:39.965","level":"INFO","message":"Restoring cache from database... \n","data":{}}
+{"timestamp":"10:39:39.969","level":"ERROR","message":"Failed to restore cache from database ","data":{"error":"failed to restore cache from db: pq: отношение \"orders_json\" не существует"}}
+{"timestamp":"10:39:39.969","level":"INFO","message":"Starting cache restoration from database \n","data":{}}
+{"timestamp":"10:39:39.970","level":"ERROR","message":"Failed to restore cache from database ","data":{"error":{}}}
+{"timestamp":"10:39:39.971","level":"INFO","message":"Server started successfully ","data":{"port":8080}}
+{"timestamp":"10:39:39.971","level":"INFO","message":"starting HTTP server ","data":{"addr":":8080"}}
+{"timestamp":"10:23:23.940","level":"INFO","message":"Shutting down server... \n","data":{}}
+{"timestamp":"10:23:23.940","level":"INFO","message":"shutting down HTTP server \n","data":{}}
+{"timestamp":"10:23:23.942","level":"ERROR","message":"Server failed to start ","data":{"error":{}}}
+{"timestamp":"13:30:30.379","level":"INFO","message":"Starting application with configuration ","data":{"config":{"DB":{"Db":"orders","Host":"localhost","Password":"1324","Port":5432,"User":"postgres"},"Environment":"development","HTTPPort":8080,"Kafka":{"Brokers":["kafka:9092"],"GroupID":"wildberries-consumer","Topic":"orders"},"Redis":{"Host":"localhost","Port":6379}}}}
+{"timestamp":"13:30:30.405","level":"INFO","message":"Attempting to connect to Postgres ","data":{"database":"orders","host":"localhost","port":5432}}
+{"timestamp":"13:30:30.472","level":"INFO","message":"Successfully connected to PostgreSQL database \n","data":{}}
+{"timestamp":"13:30:30.552","level":"INFO","message":"Running migrations up... \n","data":{}}
+{"timestamp":"13:30:30.554","level":"INFO","message":"No migrations to apply \n","data":{}}
+{"timestamp":"13:30:30.554","level":"INFO","message":"Attempting to connect to Redis ","data":{"host":"localhost","port":6379}}
+{"timestamp":"13:30:30.624","level":"WARN","message":"Failed to connect to Redis ","data":{"attempt":1,"error":{"Addr":{"IP":"::1","Port":6379,"Zone":""},"Err":{"Err":10061,"Syscall":"connectex"},"Net":"tcp","Op":"dial","Source":null}}}
+{"timestamp":"13:32:32.705","level":"WARN","message":"Failed to connect to Redis ","data":{"attempt":2,"error":{"Addr":{"IP":"::1","Port":6379,"Zone":""},"Err":{"Err":10061,"Syscall":"connectex"},"Net":"tcp","Op":"dial","Source":null}}}
+{"timestamp":"13:48:48.129","level":"INFO","message":"Starting application with configuration ","data":{"config":{"DB":{"Db":"orders","Host":"localhost","Password":"1324","Port":5432,"User":"postgres"},"Environment":"development","HTTPPort":8080,"Kafka":{"Brokers":["kafka:9092"],"GroupID":"wildberries-consumer","Topic":"orders"},"Redis":{"Host":"localhost","Port":6379}}}}
+{"timestamp":"13:48:48.154","level":"INFO","message":"Attempting to connect to Postgres ","data":{"database":"orders","host":"localhost","port":5432}}
+{"timestamp":"13:48:48.205","level":"INFO","message":"Successfully connected to PostgreSQL database \n","data":{}}
+{"timestamp":"13:48:48.383","level":"INFO","message":"Running migrations up... \n","data":{}}
+{"timestamp":"13:48:48.384","level":"INFO","message":"No migrations to apply \n","data":{}}
+{"timestamp":"13:48:48.385","level":"INFO","message":"Attempting to connect to Redis ","data":{"host":"localhost","port":6379}}
+{"timestamp":"13:48:48.389","level":"INFO","message":"Successfully connected to Redis \n","data":{}}
+{"timestamp":"13:48:48.392","level":"INFO","message":"Application started successfully ","data":{"http_port":8080,"kafka_brokers":["kafka:9092"],"kafka_topic":"orders"}}
+{"timestamp":"13:48:48.392","level":"INFO","message":"Starting Kafka consumer... \n","data":{}}
+{"timestamp":"13:48:48.394","level":"INFO","message":"Запуск Kafka consumer для топика: orders \n","data":{}}
+{"timestamp":"13:48:48.393","level":"INFO","message":"Starting HTTP server... ","data":{"port":8080}}
+{"timestamp":"13:48:48.396","level":"INFO","message":"starting HTTP server ","data":{"addr":":8080"}}
+{"timestamp":"13:05:05.263","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:27:27.138","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:49:49.004","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:10:10.916","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:32:32.777","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:54:54.669","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:16:16.568","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:38:38.453","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:00:00.376","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:22:22.210","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:44:44.120","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:05:05.994","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:27:27.883","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:49:49.802","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:11:11.690","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:33:33.531","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:55:55.383","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:17:17.282","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:39:39.140","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:01:01.003","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:22:22.864","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:44:44.708","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:06:06.563","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:28:28.384","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:50:50.224","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:12:12.115","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:33:33.999","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:55:55.910","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:17:17.785","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:39:39.661","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:01:01.535","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:23:23.426","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:45:45.309","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:07:07.204","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:29:29.093","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:51:51.014","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:12:12.914","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:34:34.799","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:56:56.737","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:18:18.619","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:40:40.539","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:02:02.440","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:24:24.345","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:46:46.242","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:08:08.159","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:30:30.075","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:51:51.972","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:13:13.868","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:35:35.747","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:57:57.662","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:19:19.566","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:41:41.464","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:03:03.325","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:25:25.226","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:47:47.098","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:09:09.011","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:30:30.892","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:52:52.790","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:14:14.682","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:36:36.579","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:58:58.493","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:20:20.387","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:42:42.313","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:04:04.210","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:26:26.137","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:48:48.023","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:09:09.904","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:31:31.788","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:53:53.671","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:15:15.597","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:37:37.475","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:59:59.412","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:21:21.297","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:43:43.202","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:05:05.100","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:26:26.961","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:48:48.883","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:10:10.794","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:32:32.693","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:54:54.571","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:16:16.476","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:38:38.382","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:00:00.283","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:22:22.149","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:44:44.034","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:05:05.959","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:27:27.861","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"13:49:49.747","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:11:11.631","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:33:33.524","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:55:55.419","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:17:17.328","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:39:39.220","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:01:01.104","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:23:23.016","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:44:44.924","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:06:06.799","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:28:28.715","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:50:50.608","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:12:12.496","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:34:34.410","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:56:56.307","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:18:18.194","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:40:40.068","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:01:01.968","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:23:23.860","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:45:45.750","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:07:07.646","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:29:29.526","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:51:51.447","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:13:13.349","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:35:35.267","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:57:57.176","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:19:19.051","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:40:40.929","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:02:02.822","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:24:24.725","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:46:46.614","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:08:08.537","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:30:30.457","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:52:52.355","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:14:14.235","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:36:36.146","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:58:58.066","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:19:19.968","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:41:41.869","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:03:03.753","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:25:25.623","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:47:47.522","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:09:09.419","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:31:31.337","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:53:53.231","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:15:15.131","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:37:37.015","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:58:58.905","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:20:20.814","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:42:42.727","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:04:04.636","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:26:26.527","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:48:48.456","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:10:10.381","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:32:32.416","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:54:54.283","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:16:16.153","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:37:37.996","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:59:59.893","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:21:21.793","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:43:43.701","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:05:05.573","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:27:27.416","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:49:49.290","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:11:11.196","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:33:33.070","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:54:54.951","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:16:16.808","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:38:38.825","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:00:00.690","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:22:22.585","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:44:44.461","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:49:49.295","level":"INFO","message":"Shutting down application... \n","data":{}}
+{"timestamp":"14:49:49.295","level":"INFO","message":"shutting down HTTP server \n","data":{}}
+{"timestamp":"14:49:49.295","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: context canceled \n","data":{}}
+{"timestamp":"14:49:49.296","level":"INFO","message":"Остановка Kafka consumer \n","data":{}}
+{"timestamp":"14:49:49.296","level":"ERROR","message":"Server failed to start ","data":{"error":"http: Server closed"}}
+{"timestamp":"14:49:49.296","level":"INFO","message":"Application shutdown completed \n","data":{}}
+{"timestamp":"14:50:50.782","level":"INFO","message":"Starting application with configuration ","data":{"config":{"DB":{"Db":"orders","Host":"localhost","Password":"1324","Port":5432,"User":"postgres"},"Environment":"development","HTTPPort":8080,"Kafka":{"Brokers":["kafka:9092"],"GroupID":"wildberries-consumer","Topic":"orders"},"Redis":{"Host":"localhost","Port":6379}}}}
+{"timestamp":"14:50:50.807","level":"INFO","message":"Attempting to connect to Postgres ","data":{"database":"orders","host":"localhost","port":5432}}
+{"timestamp":"14:50:50.977","level":"INFO","message":"Successfully connected to PostgreSQL database \n","data":{}}
+{"timestamp":"14:51:51.028","level":"INFO","message":"Running migrations up... \n","data":{}}
+{"timestamp":"14:51:51.030","level":"INFO","message":"No migrations to apply \n","data":{}}
+{"timestamp":"14:51:51.030","level":"INFO","message":"Attempting to connect to Redis ","data":{"host":"localhost","port":6379}}
+{"timestamp":"14:51:51.031","level":"INFO","message":"Successfully connected to Redis \n","data":{}}
+{"timestamp":"14:51:51.033","level":"INFO","message":"Starting Kafka consumer... \n","data":{}}
+{"timestamp":"14:51:51.033","level":"INFO","message":"Application started successfully ","data":{"http_port":8080,"kafka_brokers":["kafka:9092"],"kafka_topic":"orders"}}
+{"timestamp":"14:51:51.033","level":"INFO","message":"Starting HTTP server... ","data":{"port":8080}}
+{"timestamp":"14:51:51.035","level":"INFO","message":"starting HTTP server ","data":{"addr":":8080"}}
+{"timestamp":"14:51:51.033","level":"INFO","message":"Запуск Kafka consumer для топика: orders \n","data":{}}
+{"timestamp":"14:07:07.896","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:29:29.785","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:45:45.775","level":"INFO","message":"Shutting down application... \n","data":{}}
+{"timestamp":"14:45:45.775","level":"INFO","message":"shutting down HTTP server \n","data":{}}
+{"timestamp":"14:45:45.775","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: context canceled \n","data":{}}
+{"timestamp":"14:45:45.777","level":"ERROR","message":"Server failed to start ","data":{"error":"http: Server closed"}}
+{"timestamp":"14:45:45.777","level":"INFO","message":"Остановка Kafka consumer \n","data":{}}
+{"timestamp":"14:45:45.778","level":"INFO","message":"Application shutdown completed \n","data":{}}
+{"timestamp":"14:47:47.601","level":"INFO","message":"Starting application with configuration ","data":{"config":{"DB":{"Db":"orders","Host":"localhost","Password":"1324","Port":5432,"User":"postgres"},"Environment":"development","HTTPPort":8080,"Kafka":{"Brokers":["kafka:9101"],"GroupID":"wildberries-consumer","Topic":"orders"},"Redis":{"Host":"localhost","Port":6379}}}}
+{"timestamp":"14:47:47.627","level":"INFO","message":"Attempting to connect to Postgres ","data":{"database":"orders","host":"localhost","port":5432}}
+{"timestamp":"14:47:47.684","level":"INFO","message":"Successfully connected to PostgreSQL database \n","data":{}}
+{"timestamp":"14:47:47.731","level":"INFO","message":"Running migrations up... \n","data":{}}
+{"timestamp":"14:47:47.732","level":"INFO","message":"No migrations to apply \n","data":{}}
+{"timestamp":"14:47:47.732","level":"INFO","message":"Attempting to connect to Redis ","data":{"host":"localhost","port":6379}}
+{"timestamp":"14:47:47.733","level":"INFO","message":"Successfully connected to Redis \n","data":{}}
+{"timestamp":"14:47:47.734","level":"INFO","message":"Application started successfully ","data":{"http_port":8080,"kafka_brokers":["kafka:9101"],"kafka_topic":"orders"}}
+{"timestamp":"14:47:47.734","level":"INFO","message":"Starting Kafka consumer... \n","data":{}}
+{"timestamp":"14:47:47.735","level":"INFO","message":"Запуск Kafka consumer для топика: orders \n","data":{}}
+{"timestamp":"14:47:47.734","level":"INFO","message":"Starting HTTP server... ","data":{"port":8080}}
+{"timestamp":"14:47:47.736","level":"INFO","message":"starting HTTP server ","data":{"addr":":8080"}}
+{"timestamp":"14:04:04.596","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9101: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:26:26.474","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9101: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:48:48.329","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9101: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:10:10.200","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9101: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:32:32.055","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9101: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:40:40.245","level":"INFO","message":"Shutting down application... \n","data":{}}
+{"timestamp":"14:40:40.245","level":"INFO","message":"shutting down HTTP server \n","data":{}}
+{"timestamp":"14:40:40.245","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: context canceled \n","data":{}}
+{"timestamp":"14:40:40.246","level":"INFO","message":"Остановка Kafka consumer \n","data":{}}
+{"timestamp":"14:40:40.246","level":"ERROR","message":"Server failed to start ","data":{"error":"http: Server closed"}}
+{"timestamp":"14:40:40.247","level":"INFO","message":"Application shutdown completed \n","data":{}}
+{"timestamp":"14:30:30.074","level":"INFO","message":"Starting application with configuration ","data":{"config":{"DB":{"Db":"orders","Host":"localhost","Password":"1324","Port":5432,"User":"postgres"},"Environment":"development","HTTPPort":8080,"Kafka":{"Brokers":["kafka:9092"],"GroupID":"wildberries-consumer","Topic":"orders"},"Redis":{"Host":"localhost","Port":6379}}}}
+{"timestamp":"14:30:30.134","level":"INFO","message":"Attempting to connect to Postgres ","data":{"database":"orders","host":"localhost","port":5432}}
+{"timestamp":"14:30:30.214","level":"INFO","message":"Successfully connected to PostgreSQL database \n","data":{}}
+{"timestamp":"14:30:30.282","level":"INFO","message":"Running migrations up... \n","data":{}}
+{"timestamp":"14:30:30.284","level":"INFO","message":"No migrations to apply \n","data":{}}
+{"timestamp":"14:30:30.284","level":"INFO","message":"Attempting to connect to Redis ","data":{"host":"localhost","port":6379}}
+{"timestamp":"14:30:30.286","level":"INFO","message":"Successfully connected to Redis \n","data":{}}
+{"timestamp":"14:30:30.287","level":"INFO","message":"Application started successfully ","data":{"http_port":8080,"kafka_brokers":["kafka:9092"],"kafka_topic":"orders"}}
+{"timestamp":"14:30:30.287","level":"INFO","message":"Starting Kafka consumer... \n","data":{}}
+{"timestamp":"14:30:30.302","level":"INFO","message":"Запуск Kafka consumer для топика: orders \n","data":{}}
+{"timestamp":"14:30:30.288","level":"INFO","message":"Starting HTTP server... ","data":{"port":8080}}
+{"timestamp":"14:30:30.304","level":"INFO","message":"starting HTTP server ","data":{"addr":":8080"}}
+{"timestamp":"14:47:47.169","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:09:09.061","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to kafka:9092: dial tcp: lookup kafka: no such host \n","data":{}}
+{"timestamp":"14:15:15.617","level":"INFO","message":"Shutting down application... \n","data":{}}
+{"timestamp":"14:15:15.618","level":"INFO","message":"shutting down HTTP server \n","data":{}}
+{"timestamp":"14:15:15.618","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: context canceled \n","data":{}}
+{"timestamp":"14:15:15.621","level":"INFO","message":"Остановка Kafka consumer \n","data":{}}
+{"timestamp":"14:15:15.620","level":"ERROR","message":"Server failed to start ","data":{"error":"http: Server closed"}}
+{"timestamp":"14:16:16.336","level":"INFO","message":"Application shutdown completed \n","data":{}}
+{"timestamp":"14:17:17.456","level":"INFO","message":"Starting application with configuration ","data":{"config":{"DB":{"Db":"orders","Host":"localhost","Password":"1324","Port":5432,"User":"postgres"},"Environment":"development","HTTPPort":8080,"Kafka":{"Brokers":["localhost:9092"],"GroupID":"wildberries-consumer","Topic":"orders"},"Redis":{"Host":"localhost","Port":6379}}}}
+{"timestamp":"14:17:17.481","level":"INFO","message":"Attempting to connect to Postgres ","data":{"database":"orders","host":"localhost","port":5432}}
+{"timestamp":"14:17:17.531","level":"INFO","message":"Successfully connected to PostgreSQL database \n","data":{}}
+{"timestamp":"14:17:17.580","level":"INFO","message":"Running migrations up... \n","data":{}}
+{"timestamp":"14:17:17.582","level":"INFO","message":"No migrations to apply \n","data":{}}
+{"timestamp":"14:17:17.582","level":"INFO","message":"Attempting to connect to Redis ","data":{"host":"localhost","port":6379}}
+{"timestamp":"14:17:17.583","level":"INFO","message":"Successfully connected to Redis \n","data":{}}
+{"timestamp":"14:17:17.584","level":"INFO","message":"Application started successfully ","data":{"http_port":8080,"kafka_brokers":["localhost:9092"],"kafka_topic":"orders"}}
+{"timestamp":"14:17:17.584","level":"INFO","message":"Starting Kafka consumer... \n","data":{}}
+{"timestamp":"14:17:17.584","level":"INFO","message":"Starting HTTP server... ","data":{"port":8080}}
+{"timestamp":"14:17:17.586","level":"INFO","message":"Запуск Kafka consumer для топика: orders \n","data":{}}
+{"timestamp":"14:17:17.586","level":"INFO","message":"starting HTTP server ","data":{"addr":":8080"}}
+{"timestamp":"14:57:57.929","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to localhost:9092: dial tcp [::1]:9092: connectex: No connection could be made because the target machine actively refused it. \n","data":{}}
+{"timestamp":"14:12:12.942","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to localhost:9092: dial tcp [::1]:9092: connectex: No connection could be made because the target machine actively refused it. \n","data":{}}
+{"timestamp":"14:27:27.955","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to localhost:9092: dial tcp [::1]:9092: connectex: No connection could be made because the target machine actively refused it. \n","data":{}}
+{"timestamp":"14:43:43.007","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to localhost:9092: dial tcp [::1]:9092: connectex: No connection could be made because the target machine actively refused it. \n","data":{}}
+{"timestamp":"14:58:58.043","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to localhost:9092: dial tcp [::1]:9092: connectex: No connection could be made because the target machine actively refused it. \n","data":{}}
+{"timestamp":"14:13:13.060","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to localhost:9092: dial tcp [::1]:9092: connectex: No connection could be made because the target machine actively refused it. \n","data":{}}
+{"timestamp":"14:28:28.076","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to localhost:9092: dial tcp [::1]:9092: connectex: No connection could be made because the target machine actively refused it. \n","data":{}}
+{"timestamp":"14:43:43.098","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to localhost:9092: dial tcp [::1]:9092: connectex: No connection could be made because the target machine actively refused it. \n","data":{}}
+{"timestamp":"14:58:58.133","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: failed to dial: failed to open connection to localhost:9092: dial tcp [::1]:9092: connectex: No connection could be made because the target machine actively refused it. \n","data":{}}
+{"timestamp":"14:13:13.168","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: EOF \n","data":{}}
+{"timestamp":"14:52:52.303","level":"INFO","message":"Shutting down application... \n","data":{}}
+{"timestamp":"14:52:52.303","level":"INFO","message":"shutting down HTTP server \n","data":{}}
+{"timestamp":"14:52:52.304","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: context canceled \n","data":{}}
+{"timestamp":"14:52:52.304","level":"ERROR","message":"Server failed to start ","data":{"error":"http: Server closed"}}
+{"timestamp":"14:52:52.304","level":"INFO","message":"Остановка Kafka consumer \n","data":{}}
+{"timestamp":"14:52:52.813","level":"INFO","message":"Application shutdown completed \n","data":{}}
+{"timestamp":"14:33:33.055","level":"INFO","message":"Starting application with configuration ","data":{"config":{"DB":{"Db":"orders","Host":"localhost","Password":"1324","Port":5432,"User":"postgres"},"Environment":"development","HTTPPort":8001,"Kafka":{"Brokers":["localhost:9092"],"GroupID":"wildberries-consumer","Topic":"orders"},"Redis":{"Host":"localhost","Port":6379}}}}
+{"timestamp":"14:33:33.081","level":"INFO","message":"Attempting to connect to Postgres ","data":{"database":"orders","host":"localhost","port":5432}}
+{"timestamp":"14:33:33.134","level":"INFO","message":"Successfully connected to PostgreSQL database \n","data":{}}
+{"timestamp":"14:33:33.283","level":"INFO","message":"Running migrations up... \n","data":{}}
+{"timestamp":"14:33:33.284","level":"INFO","message":"No migrations to apply \n","data":{}}
+{"timestamp":"14:33:33.284","level":"INFO","message":"Attempting to connect to Redis ","data":{"host":"localhost","port":6379}}
+{"timestamp":"14:33:33.287","level":"INFO","message":"Successfully connected to Redis \n","data":{}}
+{"timestamp":"14:33:33.287","level":"INFO","message":"Starting Kafka consumer... \n","data":{}}
+{"timestamp":"14:33:33.291","level":"INFO","message":"Запуск Kafka consumer для топика: orders \n","data":{}}
+{"timestamp":"14:33:33.287","level":"INFO","message":"Application started successfully ","data":{"http_port":8001,"kafka_brokers":["localhost:9092"],"kafka_topic":"orders"}}
+{"timestamp":"14:33:33.287","level":"INFO","message":"Starting HTTP server... ","data":{"port":8001}}
+{"timestamp":"14:33:33.295","level":"INFO","message":"starting HTTP server ","data":{"addr":":8001"}}
