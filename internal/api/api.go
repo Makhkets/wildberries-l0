@@ -30,14 +30,15 @@ func (h *Handler) InitRoutes() *gin.Engine {
 	router.Use(CORSMiddleware())
 	router.Use(gin.Recovery())
 
+	// Health check
+	router.GET("/health", h.HealthCheck)
+
 	// API v1 группа
 	v1 := router.Group("/api/v1")
 	{
-		// Health check
-		v1.GET("/health", h.HealthCheck)
 
 		// Orders routes
-		orders := v1.Group("/orders")
+		orders := v1.Group("/order")
 		{
 			orders.POST("", h.CreateOrder)       // POST /api/v1/orders
 			orders.GET("/:uid", h.GetOrderByUID) // GET /api/v1/orders/{uid}

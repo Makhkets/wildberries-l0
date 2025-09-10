@@ -5,8 +5,9 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/gin-gonic/gin"
 	"log/slog"
+
+	"github.com/gin-gonic/gin"
 
 	errors2 "github.com/makhkets/wildberries-l0/internal/errors"
 	"github.com/makhkets/wildberries-l0/internal/model"
@@ -120,7 +121,6 @@ func (h *Handler) logError(appErr *errors2.AppError, c *gin.Context) {
 		"path", c.Request.URL.Path,
 		"user_agent", c.Request.UserAgent(),
 		"client_ip", c.ClientIP(),
-		"request_id", c.GetString("request_id"), // Если используется middleware для request ID
 	}
 
 	switch appErr.Type {
@@ -209,12 +209,9 @@ func LoggingMiddleware() gin.HandlerFunc {
 	return gin.LoggerWithFormatter(func(param gin.LogFormatterParams) string {
 		slog.Info("HTTP Request",
 			"method", param.Method,
-			"path", param.Path,
 			"status", param.StatusCode,
 			"latency", param.Latency,
 			"client_ip", param.ClientIP,
-			"user_agent", param.Request.UserAgent(),
-			"error", param.ErrorMessage,
 		)
 		return ""
 	})

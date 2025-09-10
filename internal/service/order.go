@@ -2,30 +2,26 @@ package service
 
 import (
 	"context"
+	"fmt"
+	"log/slog"
+	"strings"
+	"time"
+
 	"github.com/makhkets/wildberries-l0/internal/cache"
 	"github.com/makhkets/wildberries-l0/internal/db"
 	"github.com/makhkets/wildberries-l0/internal/errors"
 	"github.com/makhkets/wildberries-l0/internal/model"
-	"log/slog"
-	"strings"
-	"time"
 )
 
 type Order interface {
 	GetOrderByUID(ctx context.Context, uid string) (*model.Order, error)
 	CreateOrder(ctx context.Context, order *model.Order) error
-
-	mergeDeliveryData(existing, new *model.Delivery) model.Delivery
-	mergePaymentData(existing, new *model.Payment) model.Payment
-	mergeItemsData(existingItems, newItems []model.Item) []model.Item
-	mergeItemData(existing, new *model.Item) model.Item
 }
 
 // OrderService представляет сервис для работы с заказами
 type OrderService struct {
-	repo   db.Repo
-	cache  cache.Repo
-	logger *slog.Logger
+	repo  db.Repo
+	cache cache.Repo
 }
 
 // NewOrderService создает новый сервис заказов
@@ -40,14 +36,14 @@ func NewOrderService(repo db.Repo, cache cache.Repo) Order {
 func (s *OrderService) GetOrderByUID(ctx context.Context, uid string) (*model.Order, error) {
 	// Валидация входных данных
 	if err := s.validateOrderUID(uid); err != nil {
-		s.logger.Warn("Invalid order UID provided", "uid", uid, "error", err)
+		slog.Warn("Invalid order UID provided", "uid", uid, "error", err)
 		return nil, err
 	}
 
 	// Получаем заказ из repository
 	order, err := s.repo.GetOrderByUID(ctx, uid)
 	if err != nil {
-		s.logger.Error("Failed to get order from repository",
+		slog.Error("Failed to get order from repository",
 			"uid", uid, "error", err)
 
 		// Проверяем тип ошибки и решаем, что возвращать
@@ -59,7 +55,7 @@ func (s *OrderService) GetOrderByUID(ctx context.Context, uid string) (*model.Or
 			"Failed to retrieve order")
 	}
 
-	s.logger.Info("Order retrieved successfully", "uid", uid)
+	slog.Info("Order retrieved successfully", "uid", uid)
 	return order, nil
 }
 
@@ -70,16 +66,16 @@ func (s *OrderService) CreateOrder(ctx context.Context, order *model.Order) erro
 	if err != nil {
 		// Если ошибка НЕ "не найден", то это серьезная ошибка
 		if !errors.IsErrorType(err, errors.ErrorTypeNotFound) {
-			s.logger.Error("Failed to check existing order", "uid", order.OrderUID, "error", err)
+			slog.Error("Failed to check existing order", "uid", order.OrderUID, "error", err)
 			return err
 		}
 
 		// Заказ не найден - создаем новый
-		s.logger.Info("Creating new order", "uid", order.OrderUID)
+		slog.Info("Creating new order", "uid", order.OrderUID)
 
 		err = s.repo.CreateOrder(ctx, order)
 		if err != nil {
-			s.logger.Error("Failed to create order in repository",
+			slog.Error("Failed to create order in repository",
 				"uid", order.OrderUID, "error", err)
 
 			if errors.IsErrorType(err, errors.ErrorTypeConflict) {
@@ -90,18 +86,12 @@ func (s *OrderService) CreateOrder(ctx context.Context, order *model.Order) erro
 				"Failed to create order")
 		}
 
-		//// Добавляем в кэш после успешного создания
-		//if err := s.cache.Set(ctx, order.OrderUID, order); err != nil {
-		//	s.logger.Warn("Failed to cache new order", "uid", order.OrderUID, "error", err)
-		//	// Не возвращаем ошибку, так как основная операция прошла успешно
-		//}
-
-		s.logger.Info("Order created successfully", "uid", order.OrderUID)
+		slog.Info("Order created successfully", "uid", order.OrderUID)
 		return nil
 	}
 
 	// Заказ уже существует - обновляем его
-	s.logger.Info("Order already exists, updating with new data", "uid", order.OrderUID)
+	slog.Info("Order already exists, updating with new data", "uid", order.OrderUID)
 
 	// Объединяем существующие данные с новыми
 	updatedOrder := s.mergeOrderData(existingOrder, order)
@@ -109,7 +99,7 @@ func (s *OrderService) CreateOrder(ctx context.Context, order *model.Order) erro
 	// Обновляем заказ в базе данных
 	err = s.repo.UpdateOrder(ctx, updatedOrder)
 	if err != nil {
-		s.logger.Error("Failed to update order in repository",
+		slog.Error("Failed to update order in repository",
 			"uid", order.OrderUID, "error", err)
 
 		if errors.IsErrorType(err, errors.ErrorTypeNotFound) {
@@ -120,36 +110,11 @@ func (s *OrderService) CreateOrder(ctx context.Context, order *model.Order) erro
 			"Failed to update order")
 	}
 
-	//// Обновляем кэш
-	//if err := s.cache.Set(ctx, order.OrderUID, updatedOrder); err != nil {
-	//	s.logger.Warn("Failed to update order in cache", "uid", order.OrderUID, "error", err)
-	//}
-
 	// Копируем обновленные данные обратно в переданный объект
 	*order = *updatedOrder
 
-	s.logger.Info("Order updated successfully", "uid", order.OrderUID)
+	slog.Info("Order updated successfully", "uid", order.OrderUID)
 	return nil
-}
-
-// GetOrdersByCustomer получает заказы клиента с проверкой прав доступа
-func (s *OrderService) GetOrdersByCustomer(ctx context.Context, customerID string, requestingUserID string) ([]*model.Order, error) {
-	// Проверяем права доступа (пример бизнес-логики)
-	if !s.canAccessCustomerOrders(customerID, requestingUserID) {
-		s.logger.Warn("Unauthorized access to customer orders",
-			"customerID", customerID, "requestingUser", requestingUserID)
-		return nil, errors.NewForbiddenError("Access to customer orders denied")
-	}
-
-	orders, err := s.repo.GetOrdersByCustomerID(ctx, customerID)
-	if err != nil {
-		s.logger.Error("Failed to get customer orders",
-			"customerID", customerID, "error", err)
-		return nil, errors.NewAppError(errors.ErrorTypeInternal,
-			"Failed to retrieve customer orders")
-	}
-
-	return orders, nil
 }
 
 // validateOrderUID проверяет корректность UID заказа
@@ -189,15 +154,15 @@ func (s *OrderService) validateOrder(order *model.Order) error {
 		return errors.NewValidationError("customer_id", "cannot be empty")
 	}
 
-	// Валидация delivery
-	if order.Delivery.Name != "" {
+	// Валидация delivery с проверкой на nil
+	if order.Delivery != nil && order.Delivery.Name != "" {
 		if err := s.validateDelivery(order.Delivery); err != nil {
 			return err
 		}
 	}
 
-	// Валидация payment
-	if order.Payment.Transaction != "" {
+	// Валидация payment с проверкой на nil
+	if order.Payment != nil && order.Payment.Transaction != "" {
 		if err := s.validatePayment(order.Payment); err != nil {
 			return err
 		}
@@ -219,6 +184,10 @@ func (s *OrderService) validateOrder(order *model.Order) error {
 
 // validateDelivery проверяет данные доставки
 func (s *OrderService) validateDelivery(delivery *model.Delivery) error {
+	if delivery == nil {
+		return errors.NewValidationError("delivery", "cannot be nil")
+	}
+
 	if delivery.Name == "" {
 		return errors.NewValidationError("delivery.name", "cannot be empty")
 	}
@@ -241,6 +210,10 @@ func (s *OrderService) validateDelivery(delivery *model.Delivery) error {
 
 // validatePayment проверяет данные платежа
 func (s *OrderService) validatePayment(payment *model.Payment) error {
+	if payment == nil {
+		return errors.NewValidationError("payment", "cannot be nil")
+	}
+
 	if payment.Transaction == "" {
 		return errors.NewValidationError("payment.transaction", "cannot be empty")
 	}
@@ -262,16 +235,20 @@ func (s *OrderService) validatePayment(payment *model.Payment) error {
 
 // validateItem проверяет товарную позицию
 func (s *OrderService) validateItem(item *model.Item, index int) error {
+	if item == nil {
+		return errors.NewValidationError(fmt.Sprintf("items[%d]", index), "cannot be nil")
+	}
+
 	if item.Name == "" {
-		return errors.NewValidationError("items["+string(rune(index))+"].name", "cannot be empty")
+		return errors.NewValidationError(fmt.Sprintf("items[%d].name", index), "cannot be empty")
 	}
 
 	if item.Price <= 0 {
-		return errors.NewValidationError("items["+string(rune(index))+"].price", "must be greater than 0")
+		return errors.NewValidationError(fmt.Sprintf("items[%d].price", index), "must be greater than 0")
 	}
 
 	if item.Brand == "" {
-		return errors.NewValidationError("items["+string(rune(index))+"].brand", "cannot be empty")
+		return errors.NewValidationError(fmt.Sprintf("items[%d].brand", index), "cannot be empty")
 	}
 
 	return nil
@@ -322,11 +299,19 @@ func (s *OrderService) mergeOrderData(existing, new *model.Order) *model.Order {
 		updated.OofShard = new.OofShard
 	}
 
-	// Обновляем данные доставки
-	*updated.Delivery = s.mergeDeliveryData(updated.Delivery, new.Delivery)
+	// Обновляем данные доставки безопасно
+	if updated.Delivery == nil {
+		updated.Delivery = &model.Delivery{}
+	}
+	mergedDelivery := s.mergeDeliveryData(updated.Delivery, new.Delivery)
+	updated.Delivery = &mergedDelivery
 
-	// Обновляем данные платежа
-	*updated.Payment = s.mergePaymentData(updated.Payment, new.Payment)
+	// Обновляем данные платежа безопасно
+	if updated.Payment == nil {
+		updated.Payment = &model.Payment{}
+	}
+	mergedPayment := s.mergePaymentData(updated.Payment, new.Payment)
+	updated.Payment = &mergedPayment
 
 	// Обновляем товарные позиции
 	updated.Items = s.mergeItemsData(updated.Items, new.Items)
@@ -339,28 +324,40 @@ func (s *OrderService) mergeOrderData(existing, new *model.Order) *model.Order {
 
 // mergeDeliveryData объединяет данные доставки
 func (s *OrderService) mergeDeliveryData(existing, new *model.Delivery) model.Delivery {
+	// Если existing равен nil, возвращаем new или пустую структуру
+	if existing == nil {
+		if new == nil {
+			return model.Delivery{}
+		}
+		return *new
+	}
+
+	// Создаем копию существующих данных
 	updated := *existing
 
-	if new.Name != "" {
-		updated.Name = new.Name
-	}
-	if new.Phone != "" {
-		updated.Phone = new.Phone
-	}
-	if new.Zip != "" {
-		updated.Zip = new.Zip
-	}
-	if new.City != "" {
-		updated.City = new.City
-	}
-	if new.Address != "" {
-		updated.Address = new.Address
-	}
-	if new.Region != "" {
-		updated.Region = new.Region
-	}
-	if new.Email != "" {
-		updated.Email = new.Email
+	// Обновляем только если new не nil и поля не пустые
+	if new != nil {
+		if new.Name != "" {
+			updated.Name = new.Name
+		}
+		if new.Phone != "" {
+			updated.Phone = new.Phone
+		}
+		if new.Zip != "" {
+			updated.Zip = new.Zip
+		}
+		if new.City != "" {
+			updated.City = new.City
+		}
+		if new.Address != "" {
+			updated.Address = new.Address
+		}
+		if new.Region != "" {
+			updated.Region = new.Region
+		}
+		if new.Email != "" {
+			updated.Email = new.Email
+		}
 	}
 
 	return updated
@@ -368,48 +365,64 @@ func (s *OrderService) mergeDeliveryData(existing, new *model.Delivery) model.De
 
 // mergePaymentData объединяет данные платежа
 func (s *OrderService) mergePaymentData(existing, new *model.Payment) model.Payment {
+	// Если existing равен nil, возвращаем new или пустую структуру
+	if existing == nil {
+		if new == nil {
+			return model.Payment{}
+		}
+		return *new
+	}
+
+	// Создаем копию существующих данных
 	updated := *existing
 
-	if new.Transaction != "" {
-		updated.Transaction = new.Transaction
-	}
-	if new.RequestID != "" {
-		updated.RequestID = new.RequestID
-	}
-	if new.Currency != "" {
-		updated.Currency = new.Currency
-	}
-	if new.Provider != "" {
-		updated.Provider = new.Provider
-	}
-	if new.Amount != 0 {
-		updated.Amount = new.Amount
-	}
-	if new.PaymentDt != 0 {
-		updated.PaymentDt = new.PaymentDt
-	}
-	if new.Bank != "" {
-		updated.Bank = new.Bank
-	}
-	if new.DeliveryCost != 0 {
-		updated.DeliveryCost = new.DeliveryCost
-	}
-	if new.GoodsTotal != 0 {
-		updated.GoodsTotal = new.GoodsTotal
-	}
-	if new.CustomFee != 0 {
-		updated.CustomFee = new.CustomFee
+	// Обновляем только если new не nil и поля не пустые
+	if new != nil {
+		if new.Transaction != "" {
+			updated.Transaction = new.Transaction
+		}
+		if new.RequestID != "" {
+			updated.RequestID = new.RequestID
+		}
+		if new.Currency != "" {
+			updated.Currency = new.Currency
+		}
+		if new.Provider != "" {
+			updated.Provider = new.Provider
+		}
+		if new.Amount != 0 {
+			updated.Amount = new.Amount
+		}
+		if new.PaymentDt != 0 {
+			updated.PaymentDt = new.PaymentDt
+		}
+		if new.Bank != "" {
+			updated.Bank = new.Bank
+		}
+		if new.DeliveryCost != 0 {
+			updated.DeliveryCost = new.DeliveryCost
+		}
+		if new.GoodsTotal != 0 {
+			updated.GoodsTotal = new.GoodsTotal
+		}
+		if new.CustomFee != 0 {
+			updated.CustomFee = new.CustomFee
+		}
 	}
 
 	return updated
 }
 
-// mergeItemsData объединяет товарные позиции
-// Стратегия: заменяем все существующие товары новыми, если новые товары предоставлены
+// mergeItemsData объединяет массивы товаров
 func (s *OrderService) mergeItemsData(existingItems, newItems []model.Item) []model.Item {
-	// Если новых товаров нет, оставляем существующие
+	// Если нет новых товаров, возвращаем существующие
 	if len(newItems) == 0 {
 		return existingItems
+	}
+
+	// Если нет существующих товаров, возвращаем новые
+	if len(existingItems) == 0 {
+		return newItems
 	}
 
 	// Если есть новые товары, создаем карту существующих товаров по ChrtID

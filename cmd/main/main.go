@@ -2,13 +2,14 @@ package main
 
 import (
 	"context"
-	"github.com/makhkets/wildberries-l0/pkg/lib/logger/sl"
 	"log/slog"
 	"os"
 	"os/signal"
 	"sync"
 	"syscall"
 	"time"
+
+	"github.com/makhkets/wildberries-l0/pkg/lib/logger/sl"
 
 	"github.com/makhkets/wildberries-l0/internal/api"
 	"github.com/makhkets/wildberries-l0/internal/cache"
@@ -65,7 +66,7 @@ func main() {
 	// Инициализация Kafka consumer
 	kafkaConsumer := kafka.NewConsumer(cfg, services)
 	defer func() {
-		if err := kafkaConsumer.Close(); err != nil {
+		if err = kafkaConsumer.Close(); err != nil {
 			slog.Error("Failed to close Kafka consumer", sl.Err(err))
 		}
 	}()
