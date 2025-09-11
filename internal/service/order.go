@@ -39,30 +39,121 @@ func NewOrderService(repo db.Repo, cache cache.Repo, config *config.Config) Orde
 }
 
 func (s *OrderService) MustLoadCache(ctx context.Context) {
+	// Получаем все существующие ключи заказов в кэше
 	keys, err := s.cache.GetAllKeys(ctx, "order:*")
 	if err != nil {
 		slog.Error("Failed to get all keys from cache", sl.Err(err))
 		return
 	}
-	for _, key := range keys {
-		fmt.Println(key)
+
+	slog.Info("Current cache state", "cached_orders", len(keys), "max_orders", s.config.Redis.MaxOrders)
+
+	// Если кэш уже заполнен до максимума, очищаем его частично
+	if len(keys) >= s.config.Redis.MaxOrders {
+		err = s.cleanupOldestCacheEntries(ctx, len(keys)-s.config.Redis.MaxOrders+1)
+		if err != nil {
+			slog.Error("Failed to cleanup old cache entries", sl.Err(err))
+		}
 	}
 
-	// >
-	if len(keys) <= s.config.Redis.MaxOrders {
-		//delKeys := keys[:len(keys)-s.config.Redis.MaxOrders+1]
+	// Определяем сколько заказов нужно загрузить
+	remainingSlots := s.config.Redis.MaxOrders - len(keys)
+	if remainingSlots <= 0 {
+		remainingSlots = s.config.Redis.MaxOrders
 	}
 
-	return // todo delete
-	orders, err := s.repo.GetCacheOrders(ctx, s.config.Redis.MaxOrders)
+	// Загружаем заказы из базы данных
+	orders, err := s.repo.GetCacheOrders(ctx, remainingSlots)
 	if err != nil {
 		slog.Error("Failed to load orders for cache", sl.Err(err))
-		panic(err)
+		return
 	}
 
+	if len(orders) == 0 {
+		slog.Info("No orders to load into cache")
+		return
+	}
+
+	// Добавляем заказы в кэш
 	successAdded := s.cache.SetOrders(ctx, orders)
 
-	slog.Info("Orders loaded into cache successfully", slog.Int("count", successAdded))
+	slog.Info("Orders loaded into cache successfully",
+		"requested", len(orders),
+		"added", successAdded,
+		"total_slots", s.config.Redis.MaxOrders)
+}
+
+// cleanupOldestCacheEntries удаляет самые старые записи из кэша
+func (s *OrderService) cleanupOldestCacheEntries(ctx context.Context, countToRemove int) error {
+	if countToRemove <= 0 {
+		return nil
+	}
+
+	keys, err := s.cache.GetAllKeys(ctx, "order:*")
+	if err != nil {
+		return fmt.Errorf("failed to get cache keys: %w", err)
+	}
+
+	if len(keys) == 0 {
+		return nil
+	}
+
+	// Ограничиваем количество удаляемых записей
+	if countToRemove > len(keys) {
+		countToRemove = len(keys)
+	}
+
+	// Удаляем первые N ключей (в Redis они возвращаются в произвольном порядке,
+	// но для управления размером кэша это приемлемо)
+	keysToDelete := keys[:countToRemove]
+
+	for _, key := range keysToDelete {
+		if err = s.cache.Delete(ctx, key); err != nil {
+			slog.Error("Failed to delete cache key", "key", key, "error", err)
+		}
+	}
+
+	slog.Info("Cleaned up old cache entries", "removed", len(keysToDelete))
+	return nil
+}
+
+// ensureCacheSpace проверяет и освобождает место в кэше для новых заказов
+func (s *OrderService) ensureCacheSpace(ctx context.Context, newOrdersCount int) error {
+	keys, err := s.cache.GetAllKeys(ctx, "order:*")
+	if err != nil {
+		return fmt.Errorf("failed to get cache keys: %w", err)
+	}
+
+	currentCount := len(keys)
+	maxOrders := s.config.Redis.MaxOrders
+
+	// Если добавление новых заказов превысит лимит, освобождаем место
+	if currentCount+newOrdersCount > maxOrders {
+		countToRemove := currentCount + newOrdersCount - maxOrders
+		return s.cleanupOldestCacheEntries(ctx, countToRemove)
+	}
+
+	return nil
+}
+
+// addOrderToCache добавляет заказ в кэш с проверкой размера
+func (s *OrderService) addOrderToCache(ctx context.Context, order *model.Order) error {
+	// Проверяем, есть ли место в кэше
+	if err := s.ensureCacheSpace(ctx, 1); err != nil {
+		slog.Error("Failed to ensure cache space", "uid", order.OrderUID, "error", err)
+		return err
+	}
+
+	// Добавляем заказ в кэш
+	orders := []*model.Order{order}
+	successAdded := s.cache.SetOrders(ctx, orders)
+
+	if successAdded == 0 {
+		return fmt.Errorf("failed to add order to cache")
+	}
+
+	slog.Debug("Order added to cache", "uid", order.OrderUID)
+	return nil
 }
 
 // GetOrderByUID получает заказ по UID с дополнительной бизнес-логикой

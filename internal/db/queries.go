@@ -13,8 +13,7 @@ import (
 type Repo interface {
 	Health() error
 	Close() error
-
-	// Основные операции CRUD
+	
 	GetOrderByUID(ctx context.Context, uid string) (*model.Order, error)
 	CreateOrder(ctx context.Context, order *model.Order) error
 	UpdateOrder(ctx context.Context, order *model.Order) error
