@@ -21,6 +21,7 @@ type Repo interface {
 	DeleteOrder(ctx context.Context, uid string) error
 
 	OrderExists(ctx context.Context, uid string) (bool, error)
+	GetCacheOrders(ctx context.Context, ordersCount int) ([]*model.Order, error)
 }
 
 // GetOrderByUID получает заказ по UID из базы данных одним запросом с JOIN
@@ -286,4 +287,39 @@ func (db *Database) OrderExists(ctx context.Context, uid string) (bool, error) {
 	}
 
 	return true, nil
+}
+
+// GetCacheOrders получает последние N ордеров из базы
+func (db *Database) GetCacheOrders(ctx context.Context, ordersCount int) ([]*model.Order, error) {
+	query := `
+	SELECT id, order_uid, track_number, entry, locale, internal_signature,
+	       customer_id, delivery_service, shardkey, sm_id, date_created,
+	       oof_shard, created_at, updated_at
+	FROM orders
+	ORDER BY created_at DESC
+	LIMIT $1`
+
+	rows, err := db.DB.QueryContext(ctx, query, ordersCount)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	var orders []*model.Order = make([]*model.Order, 0, ordersCount)
+	for rows.Next() {
+		var order model.Order
+		err = rows.Scan(
+			&order.ID, &order.OrderUID, &order.TrackNumber, &order.Entry,
+			&order.Locale, &order.InternalSignature, &order.CustomerID,
+			&order.DeliveryService, &order.Shardkey, &order.SmID,
+			&order.DateCreated, &order.OofShard, &order.CreatedAt, &order.UpdatedAt,
+		)
+		if err != nil {
+			return nil, err
+		}
+
+		orders = append(orders, &order)
+	}
+
+	return orders, nil
 }

@@ -8,28 +8,61 @@ import (
 	"time"
 
 	"github.com/makhkets/wildberries-l0/internal/cache"
+	"github.com/makhkets/wildberries-l0/internal/config"
 	"github.com/makhkets/wildberries-l0/internal/db"
 	"github.com/makhkets/wildberries-l0/internal/errors"
 	"github.com/makhkets/wildberries-l0/internal/model"
+	"github.com/makhkets/wildberries-l0/pkg/lib/logger/sl"
 )
 
 type Order interface {
 	GetOrderByUID(ctx context.Context, uid string) (*model.Order, error)
 	CreateOrder(ctx context.Context, order *model.Order) error
+
+	MustLoadCache(ctx context.Context)
 }
 
 // OrderService представляет сервис для работы с заказами
 type OrderService struct {
-	repo  db.Repo
-	cache cache.Repo
+	repo   db.Repo
+	cache  cache.Repo
+	config *config.Config
 }
 
 // NewOrderService создает новый сервис заказов
-func NewOrderService(repo db.Repo, cache cache.Repo) Order {
+func NewOrderService(repo db.Repo, cache cache.Repo, config *config.Config) Order {
 	return &OrderService{
-		repo:  repo,
-		cache: cache,
+		repo:   repo,
+		cache:  cache,
+		config: config,
 	}
+}
+
+func (s *OrderService) MustLoadCache(ctx context.Context) {
+	keys, err := s.cache.GetAllKeys(ctx, "order:*")
+	if err != nil {
+		slog.Error("Failed to get all keys from cache", sl.Err(err))
+		return
+	}
+	for _, key := range keys {
+		fmt.Println(key)
+	}
+
+	// >
+	if len(keys) <= s.config.Redis.MaxOrders {
+		//delKeys := keys[:len(keys)-s.config.Redis.MaxOrders+1]
+	}
+
+	return // todo delete
+	orders, err := s.repo.GetCacheOrders(ctx, s.config.Redis.MaxOrders)
+	if err != nil {
+		slog.Error("Failed to load orders for cache", sl.Err(err))
+		panic(err)
+	}
+
+	successAdded := s.cache.SetOrders(ctx, orders)
+
+	slog.Info("Orders loaded into cache successfully", slog.Int("count", successAdded))
 }
 
 // GetOrderByUID получает заказ по UID с дополнительной бизнес-логикой

@@ -28,14 +28,6 @@ func main() {
 
 	slog.Info("Starting application with configuration", slog.Any("config", cfg))
 
-	// Подключение к базе данных
-	database := db.MustLoad(cfg)
-	defer func() {
-		if err := database.Close(); err != nil {
-			slog.Error("Failed to close database", sl.Err(err))
-		}
-	}()
-
 	// Выполнение миграций
 	migrator, err := migrate.NewMigrator(cfg)
 	if err != nil {
@@ -60,8 +52,21 @@ func main() {
 		}
 	}()
 
+	// Подключение к базе данных
+	database := db.MustLoad(cfg)
+	defer func() {
+		if err = database.Close(); err != nil {
+			slog.Error("Failed to close database", sl.Err(err))
+		}
+	}()
+
 	// Инициализация сервисов
-	services := service.NewOrderService(database, cacheInstance)
+	services := service.NewOrderService(database, cacheInstance, cfg)
+
+	// Подгружаем кэш
+	services.MustLoadCache(context.Background())
+
+	return // todo убрать
 
 	// Инициализация Kafka consumer
 	kafkaConsumer := kafka.NewConsumer(cfg, services)
