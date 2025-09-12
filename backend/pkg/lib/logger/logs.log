@@ -1139,3 +1139,31 @@
 {"timestamp":"14:43:43.541","level":"INFO","message":"Остановка Kafka consumer \n","data":{}}
 {"timestamp":"14:43:43.542","level":"INFO","message":"HTTP server stopped \n","data":{}}
 {"timestamp":"14:43:43.596","level":"INFO","message":"Application shutdown completed \n","data":{}}
+{"timestamp":"14:10:10.967","level":"INFO","message":"Starting application with configuration ","data":{"config":{"DB":{"Db":"wildberries","Host":"localhost","Password":"1324","Port":5432,"User":"postgres"},"Environment":"development","HTTPPort":8081,"Kafka":{"Brokers":["localhost:9092"],"GroupID":"wildberries-consumer","Topic":"orders"},"Redis":{"Host":"localhost","MaxOrders":5,"Port":6379}}}}
+{"timestamp":"14:11:11.137","level":"INFO","message":"Running migrations up... \n","data":{}}
+{"timestamp":"14:11:11.139","level":"INFO","message":"No migrations to apply \n","data":{}}
+{"timestamp":"14:11:11.139","level":"INFO","message":"Attempting to connect to Redis ","data":{"host":"localhost","port":6379}}
+{"timestamp":"14:11:11.140","level":"INFO","message":"Successfully connected to Redis \n","data":{}}
+{"timestamp":"14:11:11.141","level":"INFO","message":"Attempting to connect to Postgres ","data":{"database":"wildberries","host":"localhost","port":5432}}
+{"timestamp":"14:11:11.202","level":"INFO","message":"Successfully connected to PostgreSQL database \n","data":{}}
+{"timestamp":"14:11:11.204","level":"INFO","message":"Current cache state ","data":{"cached_orders":1,"max_orders":5}}
+{"timestamp":"14:11:11.253","level":"INFO","message":"Orders loaded into cache successfully ","data":{"added":1,"requested":1,"total_slots":5}}
+{"timestamp":"14:11:11.461","level":"INFO","message":"Application started successfully ","data":{"http_port":8081,"kafka_brokers":["localhost:9092"],"kafka_topic":"orders"}}
+{"timestamp":"14:11:11.477","level":"INFO","message":"Starting Kafka consumer... \n","data":{}}
+{"timestamp":"14:11:11.494","level":"INFO","message":"Запуск Kafka consumer для топика: orders \n","data":{}}
+{"timestamp":"14:11:11.477","level":"INFO","message":"Starting HTTP server... ","data":{"port":8081}}
+{"timestamp":"14:11:11.501","level":"INFO","message":"Starting HTTP server ","data":{"addr":":8081"}}
+{"timestamp":"14:57:57.787","level":"INFO","message":"HTTP Request ","data":{"client_ip":"127.0.0.1","latency":0,"method":"OPTIONS","status":204}}
+{"timestamp":"14:57:57.795","level":"INFO","message":"Order retrieved from cache ","data":{"uid":"b563feb7b2b84b6test"}}
+{"timestamp":"14:57:57.797","level":"INFO","message":"Order retrieved via API ","data":{"client_ip":"127.0.0.1","method":"GET","path":"/api/v1/order/b563feb7b2b84b6test","uid":"b563feb7b2b84b6test"}}
+{"timestamp":"14:57:57.799","level":"INFO","message":"HTTP Request ","data":{"client_ip":"127.0.0.1","latency":8690700,"method":"GET","status":200}}
+{"timestamp":"14:03:03.667","level":"INFO","message":"HTTP Request ","data":{"client_ip":"127.0.0.1","latency":0,"method":"OPTIONS","status":204}}
+{"timestamp":"14:03:03.671","level":"INFO","message":"Order retrieved from cache ","data":{"uid":"b563feb7b2b84b6test"}}
+{"timestamp":"14:03:03.672","level":"INFO","message":"Order retrieved via API ","data":{"client_ip":"127.0.0.1","method":"GET","path":"/api/v1/order/b563feb7b2b84b6test","uid":"b563feb7b2b84b6test"}}
+{"timestamp":"14:03:03.675","level":"INFO","message":"HTTP Request ","data":{"client_ip":"127.0.0.1","latency":4129100,"method":"GET","status":200}}
+{"timestamp":"14:07:07.178","level":"INFO","message":"Shutting down application... \n","data":{}}
+{"timestamp":"14:07:07.178","level":"INFO","message":"Stopping HTTP server \n","data":{}}
+{"timestamp":"14:07:07.178","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: context canceled \n","data":{}}
+{"timestamp":"14:07:07.179","level":"INFO","message":"Остановка Kafka consumer \n","data":{}}
+{"timestamp":"14:07:07.179","level":"INFO","message":"HTTP server stopped \n","data":{}}
+{"timestamp":"14:07:07.339","level":"INFO","message":"Application shutdown completed \n","data":{}}

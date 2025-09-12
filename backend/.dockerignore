@@ -6,37 +6,31 @@
 README.md
 *.md
 
-# Build artifacts
-tmp/
-build/
-dist/
+# Docker
+Dockerfile
+.dockerignore
+docker-compose.yml
 
-# IDE
-.vscode/
-.idea/
+# Environment files
+.env
+.env.local
+
+# IDE files
+.vscode
+.idea
 *.swp
 *.swo
-*~
 
-# OS
+# OS files
 .DS_Store
 Thumbs.db
 
 # Logs
 *.log
-logs/
-
-# Docker
-docker-compose*
-.dockerignore
-
-# Environment
-.env.local
-.env.*.local
 
 # Test files
 *_test.go
-testdata/
 
-# Scripts
-*.sh
+# Temporary files
+tmp/
+temp/

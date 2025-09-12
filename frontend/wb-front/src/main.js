@@ -1,7 +1,7 @@
 import './style.css'
 
 // Конфигурация API
-const API_BASE_URL = 'http://localhost:8081/api/v1';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1';
 
 // Элементы DOM
 const orderInput = document.getElementById('orderInput');
