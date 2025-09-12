@@ -13,7 +13,7 @@ import (
 type Repo interface {
 	Health() error
 	Close() error
-	
+
 	GetOrderByUID(ctx context.Context, uid string) (*model.Order, error)
 	CreateOrder(ctx context.Context, order *model.Order) error
 	UpdateOrder(ctx context.Context, order *model.Order) error
@@ -288,37 +288,155 @@ func (db *Database) OrderExists(ctx context.Context, uid string) (bool, error) {
 	return true, nil
 }
 
-// GetCacheOrders получает последние N ордеров из базы
+// GetCacheOrders получает последние N ордеров из базы со всеми связанными данными
 func (db *Database) GetCacheOrders(ctx context.Context, ordersCount int) ([]*model.Order, error) {
-	query := `
-	SELECT id, order_uid, track_number, entry, locale, internal_signature,
-	       customer_id, delivery_service, shardkey, sm_id, date_created,
-	       oof_shard, created_at, updated_at
-	FROM orders
-	ORDER BY created_at DESC
-	LIMIT $1`
+	// Получаем основные данные заказов с delivery и payment
+	mainQuery := `
+		SELECT 
+			o.id, o.order_uid, o.track_number, o.entry, o.locale, o.internal_signature,
+			o.customer_id, o.delivery_service, o.shardkey, o.sm_id, o.date_created,
+			o.oof_shard, o.created_at, o.updated_at,
+			
+			COALESCE(d.id, 0) as delivery_id,
+			COALESCE(d.order_id, 0) as delivery_order_id, 
+			COALESCE(d.name, '') as delivery_name,
+			COALESCE(d.phone, '') as delivery_phone,
+			COALESCE(d.zip, '') as delivery_zip,
+			COALESCE(d.city, '') as delivery_city,
+			COALESCE(d.address, '') as delivery_address,
+			COALESCE(d.region, '') as delivery_region,
+			COALESCE(d.email, '') as delivery_email,
+			
+			COALESCE(p.id, 0) as payment_id,
+			COALESCE(p.order_id, 0) as payment_order_id,
+			COALESCE(p.transaction, '') as payment_transaction,
+			COALESCE(p.request_id, '') as payment_request_id,
+			COALESCE(p.currency, '') as payment_currency,
+			COALESCE(p.provider, '') as payment_provider,
+			COALESCE(p.amount, 0) as payment_amount,
+			COALESCE(p.payment_dt, 0) as payment_dt,
+			COALESCE(p.bank, '') as payment_bank,
+			COALESCE(p.delivery_cost, 0) as payment_delivery_cost,
+			COALESCE(p.goods_total, 0) as payment_goods_total,
+			COALESCE(p.custom_fee, 0) as payment_custom_fee
+		FROM orders o
+		LEFT JOIN delivery d ON o.id = d.order_id
+		LEFT JOIN payment p ON o.id = p.order_id
+		ORDER BY o.created_at DESC
+		LIMIT $1`
 
-	rows, err := db.DB.QueryContext(ctx, query, ordersCount)
+	rows, err := db.DB.QueryContext(ctx, mainQuery, ordersCount)
 	if err != nil {
-		return nil, err
+		return nil, errors2.NewDatabaseError("get cache orders", err)
 	}
 	defer rows.Close()
 
-	var orders []*model.Order = make([]*model.Order, 0, ordersCount)
+	var orders []*model.Order
+	orderMap := make(map[int]*model.Order) // для быстрого поиска заказов по ID
+
 	for rows.Next() {
-		var order model.Order
+		order := &model.Order{
+			Delivery: &model.Delivery{},
+			Payment:  &model.Payment{},
+			Items:    []model.Item{},
+		}
+
 		err = rows.Scan(
 			&order.ID, &order.OrderUID, &order.TrackNumber, &order.Entry,
 			&order.Locale, &order.InternalSignature, &order.CustomerID,
 			&order.DeliveryService, &order.Shardkey, &order.SmID,
 			&order.DateCreated, &order.OofShard, &order.CreatedAt, &order.UpdatedAt,
+
+			&order.Delivery.ID, &order.Delivery.OrderID, &order.Delivery.Name,
+			&order.Delivery.Phone, &order.Delivery.Zip, &order.Delivery.City,
+			&order.Delivery.Address, &order.Delivery.Region, &order.Delivery.Email,
+
+			&order.Payment.ID, &order.Payment.OrderID, &order.Payment.Transaction,
+			&order.Payment.RequestID, &order.Payment.Currency, &order.Payment.Provider,
+			&order.Payment.Amount, &order.Payment.PaymentDt, &order.Payment.Bank,
+			&order.Payment.DeliveryCost, &order.Payment.GoodsTotal, &order.Payment.CustomFee,
 		)
 		if err != nil {
-			return nil, err
+			return nil, errors2.NewDatabaseError("scan cache order", err)
 		}
 
-		orders = append(orders, &order)
+		orders = append(orders, order)
+		orderMap[order.ID] = order
+	}
+
+	if err = rows.Err(); err != nil {
+		return nil, errors2.NewDatabaseError("iterate cache orders", err)
+	}
+
+	// Если заказов нет, возвращаем пустой slice
+	if len(orders) == 0 {
+		return orders, nil
+	}
+
+	// Получаем все order_id для загрузки items
+	orderIDs := make([]interface{}, len(orders))
+	placeholders := make([]string, len(orders))
+	for i, order := range orders {
+		orderIDs[i] = order.ID
+		placeholders[i] = fmt.Sprintf("$%d", i+1)
+	}
+
+	// Загружаем все items для всех заказов одним запросом
+	itemsQuery := fmt.Sprintf(`
+		SELECT id, order_id, chrt_id, track_number, price, rid, name,
+		       sale, size, total_price, nm_id, brand, status
+		FROM items 
+		WHERE order_id IN (%s)
+		ORDER BY order_id, id`, fmt.Sprintf("%s", fmt.Sprintf("%s", placeholders[0])))
+
+	// Исправляем построение плейсхолдеров
+	itemsQuery = fmt.Sprintf(`
+		SELECT id, order_id, chrt_id, track_number, price, rid, name,
+		       sale, size, total_price, nm_id, brand, status
+		FROM items 
+		WHERE order_id IN (%s)
+		ORDER BY order_id, id`, joinPlaceholders(placeholders, ","))
+
+	itemRows, err := db.DB.QueryContext(ctx, itemsQuery, orderIDs...)
+	if err != nil {
+		return nil, errors2.NewDatabaseError("get cache order items", err)
+	}
+	defer itemRows.Close()
+
+	// Группируем items по order_id
+	for itemRows.Next() {
+		var item model.Item
+		err = itemRows.Scan(
+			&item.ID, &item.OrderID, &item.ChrtID, &item.TrackNumber,
+			&item.Price, &item.RID, &item.Name, &item.Sale, &item.Size,
+			&item.TotalPrice, &item.NmID, &item.Brand, &item.Status,
+		)
+		if err != nil {
+			return nil, errors2.NewDatabaseError("scan cache order item", err)
+		}
+
+		// Находим соответствующий заказ и добавляем к нему item
+		if order, exists := orderMap[item.OrderID]; exists {
+			order.Items = append(order.Items, item)
+		}
+	}
+
+	if err = itemRows.Err(); err != nil {
+		return nil, errors2.NewDatabaseError("iterate cache order items", err)
 	}
 
 	return orders, nil
+}
+
+// joinPlaceholders соединяет плейсхолдеры строкой-разделителем
+func joinPlaceholders(placeholders []string, separator string) string {
+	if len(placeholders) == 0 {
+		return ""
+	}
+
+	result := placeholders[0]
+	for i := 1; i < len(placeholders); i++ {
+		result += separator + placeholders[i]
+	}
+	return result
 }

@@ -1095,3 +1095,47 @@
 {"timestamp":"14:16:16.450","level":"INFO","message":"Остановка Kafka consumer \n","data":{}}
 {"timestamp":"14:16:16.450","level":"INFO","message":"HTTP server stopped \n","data":{}}
 {"timestamp":"14:16:16.468","level":"INFO","message":"Application shutdown completed \n","data":{}}
+{"timestamp":"14:21:21.212","level":"INFO","message":"Starting application with configuration ","data":{"config":{"DB":{"Db":"wildberries","Host":"localhost","Password":"1324","Port":5432,"User":"postgres"},"Environment":"development","HTTPPort":8081,"Kafka":{"Brokers":["localhost:9092"],"GroupID":"wildberries-consumer","Topic":"orders"},"Redis":{"Host":"localhost","MaxOrders":5,"Port":6379}}}}
+{"timestamp":"14:21:21.324","level":"INFO","message":"Running migrations up... \n","data":{}}
+{"timestamp":"14:21:21.326","level":"INFO","message":"No migrations to apply \n","data":{}}
+{"timestamp":"14:21:21.326","level":"INFO","message":"Attempting to connect to Redis ","data":{"host":"localhost","port":6379}}
+{"timestamp":"14:21:21.329","level":"INFO","message":"Successfully connected to Redis \n","data":{}}
+{"timestamp":"14:21:21.329","level":"INFO","message":"Attempting to connect to Postgres ","data":{"database":"wildberries","host":"localhost","port":5432}}
+{"timestamp":"14:21:21.386","level":"INFO","message":"Successfully connected to PostgreSQL database \n","data":{}}
+{"timestamp":"14:21:21.386","level":"INFO","message":"Current cache state ","data":{"cached_orders":0,"max_orders":5}}
+{"timestamp":"14:21:21.396","level":"INFO","message":"Orders loaded into cache successfully ","data":{"added":1,"requested":1,"total_slots":5}}
+{"timestamp":"14:21:21.398","level":"INFO","message":"Application started successfully ","data":{"http_port":8081,"kafka_brokers":["localhost:9092"],"kafka_topic":"orders"}}
+{"timestamp":"14:21:21.398","level":"INFO","message":"Starting Kafka consumer... \n","data":{}}
+{"timestamp":"14:21:21.399","level":"INFO","message":"Запуск Kafka consumer для топика: orders \n","data":{}}
+{"timestamp":"14:21:21.398","level":"INFO","message":"Starting HTTP server... ","data":{"port":8081}}
+{"timestamp":"14:21:21.400","level":"INFO","message":"Starting HTTP server ","data":{"addr":":8081"}}
+{"timestamp":"14:31:31.769","level":"INFO","message":"Shutting down application... \n","data":{}}
+{"timestamp":"14:31:31.770","level":"INFO","message":"Stopping HTTP server \n","data":{}}
+{"timestamp":"14:31:31.770","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: context canceled \n","data":{}}
+{"timestamp":"14:31:31.771","level":"INFO","message":"Остановка Kafka consumer \n","data":{}}
+{"timestamp":"14:31:31.771","level":"INFO","message":"HTTP server stopped \n","data":{}}
+{"timestamp":"14:32:32.372","level":"INFO","message":"Application shutdown completed \n","data":{}}
+{"timestamp":"14:49:49.686","level":"INFO","message":"Starting application with configuration ","data":{"config":{"DB":{"Db":"postgres","Host":"localhost","Password":"user","Port":5432,"User":"user"},"Environment":"development","HTTPPort":8080,"Kafka":{"Brokers":["localhost:9092"],"GroupID":"wildberries-consumer","Topic":"orders"},"Redis":{"Host":"localhost","MaxOrders":100,"Port":6379}}}}
+{"timestamp":"14:49:49.923","level":"ERROR","message":"Failed to create migrator ","data":{"error":"failed to create postgres driver: pq: ������������ \"user\" �� ������ �������� ����������� (�� ������)"}}
+{"timestamp":"14:52:52.648","level":"INFO","message":"Starting application with configuration ","data":{"config":{"DB":{"Db":"postgres","Host":"localhost","Password":"user","Port":5432,"User":"user"},"Environment":"development","HTTPPort":8080,"Kafka":{"Brokers":["localhost:9092"],"GroupID":"wildberries-consumer","Topic":"orders"},"Redis":{"Host":"localhost","MaxOrders":100,"Port":6379}}}}
+{"timestamp":"14:52:52.760","level":"ERROR","message":"Failed to create migrator ","data":{"error":"failed to create postgres driver: pq: ������������ \"user\" �� ������ �������� ����������� (�� ������)"}}
+{"timestamp":"14:17:17.779","level":"INFO","message":"Starting application with configuration ","data":{"config":{"DB":{"Db":"wildberries","Host":"localhost","Password":"1324","Port":5432,"User":"postgres"},"Environment":"development","HTTPPort":8081,"Kafka":{"Brokers":["localhost:9092"],"GroupID":"wildberries-consumer","Topic":"orders"},"Redis":{"Host":"localhost","MaxOrders":5,"Port":6379}}}}
+{"timestamp":"14:17:17.970","level":"INFO","message":"Running migrations up... \n","data":{}}
+{"timestamp":"14:17:17.972","level":"INFO","message":"No migrations to apply \n","data":{}}
+{"timestamp":"14:17:17.972","level":"INFO","message":"Attempting to connect to Redis ","data":{"host":"localhost","port":6379}}
+{"timestamp":"14:17:17.975","level":"INFO","message":"Successfully connected to Redis \n","data":{}}
+{"timestamp":"14:17:17.975","level":"INFO","message":"Attempting to connect to Postgres ","data":{"database":"wildberries","host":"localhost","port":5432}}
+{"timestamp":"14:18:18.047","level":"INFO","message":"Successfully connected to PostgreSQL database \n","data":{}}
+{"timestamp":"14:18:18.048","level":"INFO","message":"Current cache state ","data":{"cached_orders":1,"max_orders":5}}
+{"timestamp":"14:43:43.287","level":"INFO","message":"Orders loaded into cache successfully ","data":{"added":1,"requested":1,"total_slots":5}}
+{"timestamp":"14:43:43.289","level":"INFO","message":"Application started successfully ","data":{"http_port":8081,"kafka_brokers":["localhost:9092"],"kafka_topic":"orders"}}
+{"timestamp":"14:43:43.291","level":"INFO","message":"Starting Kafka consumer... \n","data":{}}
+{"timestamp":"14:43:43.291","level":"INFO","message":"Запуск Kafka consumer для топика: orders \n","data":{}}
+{"timestamp":"14:43:43.291","level":"INFO","message":"Starting HTTP server... ","data":{"port":8081}}
+{"timestamp":"14:43:43.293","level":"INFO","message":"Starting HTTP server ","data":{"addr":":8081"}}
+{"timestamp":"14:43:43.540","level":"INFO","message":"Shutting down application... \n","data":{}}
+{"timestamp":"14:43:43.541","level":"INFO","message":"Stopping HTTP server \n","data":{}}
+{"timestamp":"14:43:43.541","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: context canceled \n","data":{}}
+{"timestamp":"14:43:43.541","level":"INFO","message":"Остановка Kafka consumer \n","data":{}}
+{"timestamp":"14:43:43.542","level":"INFO","message":"HTTP server stopped \n","data":{}}
+{"timestamp":"14:43:43.596","level":"INFO","message":"Application shutdown completed \n","data":{}}

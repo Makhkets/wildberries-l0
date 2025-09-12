@@ -159,22 +159,20 @@ func (s *OrderService) addOrderToCache(ctx context.Context, order *model.Order) 
 // GetOrderByUID получает заказ по UID
 func (s *OrderService) GetOrderByUID(ctx context.Context, uid string) (*model.Order, error) {
 	// Валидация входных данных
-	var order, err = &model.Order{}, error(nil)
-
 	if err := s.validateOrderUID(uid); err != nil {
 		slog.Warn("Invalid order UID provided", slog.String("uid", uid), sl.Err(err))
 		return nil, err
 	}
 
 	// Проверяем, есть ли в кэше ордер
-	order = s.cache.GetOrder(ctx, uid)
+	order := s.cache.GetOrder(ctx, uid)
 	if order != nil {
 		slog.Info("Order retrieved from cache", slog.String("uid", uid))
 		return order, nil
 	}
 
 	// Получаем заказ из repository
-	order, err = s.repo.GetOrderByUID(ctx, uid)
+	order, err := s.repo.GetOrderByUID(ctx, uid)
 	if err != nil {
 		slog.Error("Failed to get order from repository",
 			"uid", uid, "error", err)
@@ -185,6 +183,12 @@ func (s *OrderService) GetOrderByUID(ctx context.Context, uid string) (*model.Or
 
 		return nil, errors.NewAppError(errors.ErrorTypeInternal,
 			"Failed to retrieve order")
+	}
+
+	// Добавляем заказ в кэш после получения из базы данных
+	if err := s.addOrderToCache(ctx, order); err != nil {
+		slog.Warn("Failed to cache order after retrieving from database", "uid", uid, "error", err)
+		// Не возвращаем ошибку, так как заказ успешно получен из БД
 	}
 
 	return order, nil
@@ -217,6 +221,12 @@ func (s *OrderService) CreateOrder(ctx context.Context, order *model.Order) erro
 				"Failed to create order")
 		}
 
+		// Добавляем новый заказ в кэш после успешного создания
+		if err := s.addOrderToCache(ctx, order); err != nil {
+			slog.Warn("Failed to cache order after creation", "uid", order.OrderUID, "error", err)
+			// Не возвращаем ошибку, так как заказ успешно создан в БД
+		}
+
 		slog.Info("Order created successfully", "uid", order.OrderUID)
 		return nil
 	}
@@ -244,12 +254,19 @@ func (s *OrderService) CreateOrder(ctx context.Context, order *model.Order) erro
 	// Копируем обновленные данные обратно в переданный объект
 	*order = *updatedOrder
 
+	// Обновляем заказ в кэше после успешного обновления
+	if err := s.addOrderToCache(ctx, updatedOrder); err != nil {
+		slog.Warn("Failed to cache order after update", "uid", order.OrderUID, "error", err)
+		// Не возвращаем ошибку, так как заказ успешно обновлен в БД
+	}
+
 	slog.Info("Order updated successfully", "uid", order.OrderUID)
 	return nil
 }
 
 // validateOrderUID проверяет корректность UID заказа
 func (s *OrderService) validateOrderUID(uid string) error {
+
 	if uid == "" {
 		return errors.NewValidationError("order_uid", "cannot be empty")
 	}
