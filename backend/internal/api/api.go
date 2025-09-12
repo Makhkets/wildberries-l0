@@ -24,9 +24,8 @@ func (h *Handler) InitRoutes() *gin.Engine {
 	// Создаем Gin router
 	router := gin.New()
 
-	// Добавляем middleware
+	// Middleware
 	router.Use(LoggingMiddleware())
-	router.Use(RequestIDMiddleware())
 	router.Use(CORSMiddleware())
 	router.Use(gin.Recovery())
 

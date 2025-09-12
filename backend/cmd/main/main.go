@@ -66,8 +66,6 @@ func main() {
 	// Подгружаем кэш
 	services.MustLoadCache(context.Background())
 
-	return // todo убрать
-
 	// Инициализация Kafka consumer
 	kafkaConsumer := kafka.NewConsumer(cfg, services)
 	defer func() {

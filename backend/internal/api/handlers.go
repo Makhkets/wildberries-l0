@@ -2,7 +2,6 @@ package api
 
 import (
 	"net/http"
-	"strconv"
 	"time"
 
 	"log/slog"
@@ -13,36 +12,28 @@ import (
 	"github.com/makhkets/wildberries-l0/internal/model"
 )
 
-// ErrorResponse представляет структуру ошибки в HTTP ответе
 type ErrorResponse struct {
 	Error   string `json:"error"`
 	Message string `json:"message"`
 	Details string `json:"details,omitempty"`
 }
 
-// SuccessResponse представляет успешный ответ
 type SuccessResponse struct {
 	Data    interface{} `json:"data"`
 	Message string      `json:"message,omitempty"`
 }
 
-// GetOrderByUID обрабатывает GET /orders/:uid
+// GetOrderByUID GET /orders/:uid
 func (h *Handler) GetOrderByUID(c *gin.Context) {
-	// Извлекаем UID из URL параметров
 	uid := c.Param("uid")
-
-	// Вызываем сервис
 	order, err := h.services.GetOrderByUID(c.Request.Context(), uid)
 	if err != nil {
-		// Обрабатываем ошибку и возвращаем соответствующий HTTP ответ
 		h.handleError(c, err)
 		return
 	}
 
-	// Возвращаем успешный ответ
 	c.JSON(http.StatusOK, SuccessResponse{
-		Data:    order,
-		Message: "Order retrieved successfully",
+		Data: order,
 	})
 
 	slog.Info("Order retrieved via API",
@@ -52,7 +43,7 @@ func (h *Handler) GetOrderByUID(c *gin.Context) {
 		"client_ip", c.ClientIP())
 }
 
-// CreateOrder обрабатывает POST /orders
+// CreateOrder POST /orders
 func (h *Handler) CreateOrder(c *gin.Context) {
 	// Парсим JSON из запроса
 	var order model.Order
@@ -62,14 +53,12 @@ func (h *Handler) CreateOrder(c *gin.Context) {
 		return
 	}
 
-	// Вызываем сервис
 	err := h.services.CreateOrder(c.Request.Context(), &order)
 	if err != nil {
 		h.handleError(c, err)
 		return
 	}
 
-	// Возвращаем успешный ответ
 	c.JSON(http.StatusCreated, SuccessResponse{
 		Data:    order,
 		Message: "Order created successfully",
@@ -142,22 +131,6 @@ func (h *Handler) logError(appErr *errors2.AppError, c *gin.Context) {
 	}
 }
 
-// getUserIDFromContext извлекает ID пользователя из Gin контекста
-func (h *Handler) getUserIDFromContext(c *gin.Context) string {
-	// В реальном приложении здесь была бы логика извлечения ID из JWT токена
-	// который был установлен в middleware авторизации
-
-	// Сначала пробуем получить из контекста Gin (установлено middleware)
-	if userID, exists := c.Get("user_id"); exists {
-		if id, ok := userID.(string); ok {
-			return id
-		}
-	}
-
-	// Fallback: используем заголовок (в продакшене так делать нельзя!)
-	return c.GetHeader("X-User-ID")
-}
-
 // HealthCheck обрабатывает GET /health
 func (h *Handler) HealthCheck(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
@@ -167,25 +140,6 @@ func (h *Handler) HealthCheck(c *gin.Context) {
 			"unix": time.Now().UnixNano(),
 		},
 	})
-}
-
-// Middleware для установки request ID
-func RequestIDMiddleware() gin.HandlerFunc {
-	return func(c *gin.Context) {
-		requestID := c.GetHeader("X-Request-ID")
-		if requestID == "" {
-			// Генерируем новый ID если не предоставлен
-			requestID = generateRequestID()
-		}
-		c.Set("request_id", requestID)
-		c.Header("X-Request-ID", requestID)
-		c.Next()
-	}
-}
-
-// Простая функция генерации request ID (в продакшене используйте UUID)
-func generateRequestID() string {
-	return "req_" + strconv.FormatInt(time.Now().UnixNano(), 36)
 }
 
 // CORSMiddleware добавляет CORS заголовки

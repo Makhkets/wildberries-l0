@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wildberries L0 - Поиск заказов</title>
+  </head>
+  <body>
+    <div id="app">
+      <div class="container">
+        <header>
+          <h1>Система поиска заказов</h1>
+          <p class="subtitle">Введите ID заказа для получения информации</p>
+        </header>
+
+        <main>
+          <div class="search-section">
+            <div class="search-form">
+              <input
+                type="text"
+                id="orderInput"
+                placeholder="Введите UID заказа (например: b563feb7b2b84b6test)"
+                class="order-input"
+              />
+              <button id="searchBtn" class="search-btn">Найти заказ</button>
+            </div>
+          </div>
+
+          <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p>Поиск заказа...</p>
+          </div>
+
+          <div id="error" class="error hidden">
+            <div class="error-content">
+              <h3>Ошибка</h3>
+              <p id="errorMessage"></p>
+            </div>
+          </div>
+
+          <div id="orderResult" class="order-result hidden">
+            <div class="order-card">
+              <div class="order-header">
+                <h2>Информация о заказе</h2>
+                <span id="orderUid" class="order-uid"></span>
+              </div>
+
+              <div class="order-details">
+                <div class="detail-section">
+                  <h3>Основная информация</h3>
+                  <div class="detail-grid">
+                    <div class="detail-item">
+                      <label>Трек-номер:</label>
+                      <span id="trackNumber"></span>
+                    </div>
+                    <div class="detail-item">
+                      <label>Дата создания:</label>
+                      <span id="dateCreated"></span>
+                    </div>
+                    <div class="detail-item">
+                      <label>Клиент ID:</label>
+                      <span id="customerId"></span>
+                    </div>
+                    <div class="detail-item">
+                      <label>Служба доставки:</label>
+                      <span id="deliveryService"></span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="detail-section">
+                  <h3>Доставка</h3>
+                  <div id="deliveryInfo" class="delivery-info"></div>
+                </div>
+
+                <div class="detail-section">
+                  <h3>Платеж</h3>
+                  <div id="paymentInfo" class="payment-info"></div>
+                </div>
+
+                <div class="detail-section">
+                  <h3>Товары</h3>
+                  <div id="itemsList" class="items-list"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

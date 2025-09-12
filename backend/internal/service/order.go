@@ -156,21 +156,29 @@ func (s *OrderService) addOrderToCache(ctx context.Context, order *model.Order) 
 	return nil
 }
 
-// GetOrderByUID получает заказ по UID с дополнительной бизнес-логикой
+// GetOrderByUID получает заказ по UID
 func (s *OrderService) GetOrderByUID(ctx context.Context, uid string) (*model.Order, error) {
 	// Валидация входных данных
+	var order, err = &model.Order{}, error(nil)
+
 	if err := s.validateOrderUID(uid); err != nil {
-		slog.Warn("Invalid order UID provided", "uid", uid, "error", err)
+		slog.Warn("Invalid order UID provided", slog.String("uid", uid), sl.Err(err))
 		return nil, err
 	}
 
+	// Проверяем, есть ли в кэше ордер
+	order = s.cache.GetOrder(ctx, uid)
+	if order != nil {
+		slog.Info("Order retrieved from cache", slog.String("uid", uid))
+		return order, nil
+	}
+
 	// Получаем заказ из repository
-	order, err := s.repo.GetOrderByUID(ctx, uid)
+	order, err = s.repo.GetOrderByUID(ctx, uid)
 	if err != nil {
 		slog.Error("Failed to get order from repository",
 			"uid", uid, "error", err)
 
-		// Проверяем тип ошибки и решаем, что возвращать
 		if errors.IsErrorType(err, errors.ErrorTypeNotFound) {
 			return nil, err
 		}
@@ -179,7 +187,6 @@ func (s *OrderService) GetOrderByUID(ctx context.Context, uid string) (*model.Or
 			"Failed to retrieve order")
 	}
 
-	slog.Info("Order retrieved successfully", "uid", uid)
 	return order, nil
 }
 
