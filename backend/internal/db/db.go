@@ -41,7 +41,6 @@ func MustLoad(cfg *config.Config) Repo {
 			slog.Warn("Failed to open database connection", "attempt", i+1, "error", err)
 			time.Sleep(2 * time.Second)
 			continue
-		}
 
 		// Test the connection
 		err = db.Ping()

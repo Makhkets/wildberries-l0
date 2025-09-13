@@ -107,3 +107,77 @@
 {"timestamp":"13:27:27.278","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: context canceled \n","data":{}}
 {"timestamp":"13:27:27.292","level":"INFO","message":"Остановка Kafka consumer \n","data":{}}
 {"timestamp":"13:27:27.602","level":"INFO","message":"Application shutdown completed \n","data":{}}
+{"timestamp":"20:15:15.701","level":"INFO","message":"Starting application with configuration ","data":{"config":{"DB":{"Db":"wildberries","Host":"postgres","Password":"password","Port":5432,"User":"user"},"Environment":"production","HTTPPort":8000,"Kafka":{"Brokers":["kafka:29092"],"GroupID":"wildberries-consumer","Topic":"orders"},"Redis":{"Host":"redis","MaxOrders":100,"Port":6379}}}}
+{"timestamp":"20:15:15.767","level":"INFO","message":"Running migrations up... \n","data":{}}
+{"timestamp":"20:15:15.772","level":"INFO","message":"No migrations to apply \n","data":{}}
+{"timestamp":"20:15:15.773","level":"INFO","message":"Attempting to connect to Redis ","data":{"host":"redis","port":6379}}
+{"timestamp":"20:15:15.778","level":"INFO","message":"Successfully connected to Redis \n","data":{}}
+{"timestamp":"20:15:15.778","level":"INFO","message":"Attempting to connect to Postgres ","data":{"database":"wildberries","host":"postgres","port":5432}}
+{"timestamp":"20:15:15.789","level":"INFO","message":"Successfully connected to PostgreSQL database \n","data":{}}
+{"timestamp":"20:15:15.789","level":"INFO","message":"Current cache state ","data":{"cached_orders":0,"max_orders":100}}
+{"timestamp":"20:15:15.810","level":"INFO","message":"No orders to load into cache \n","data":{}}
+{"timestamp":"20:15:15.812","level":"INFO","message":"Starting Kafka consumer... \n","data":{}}
+{"timestamp":"20:15:15.812","level":"INFO","message":"Запуск Kafka consumer для топика: orders \n","data":{}}
+{"timestamp":"20:15:15.812","level":"INFO","message":"Application started successfully ","data":{"http_port":8000,"kafka_brokers":["kafka:29092"],"kafka_topic":"orders"}}
+{"timestamp":"20:15:15.812","level":"INFO","message":"Starting HTTP server... ","data":{"port":8000}}
+{"timestamp":"20:15:15.814","level":"INFO","message":"Starting HTTP server ","data":{"addr":":8000"}}
+{"timestamp":"21:32:32.473","level":"INFO","message":"Shutting down application... \n","data":{}}
+{"timestamp":"21:32:32.476","level":"INFO","message":"Stopping HTTP server \n","data":{}}
+{"timestamp":"21:32:32.487","level":"INFO","message":"HTTP server stopped \n","data":{}}
+{"timestamp":"21:32:32.476","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: context canceled \n","data":{}}
+{"timestamp":"21:32:32.502","level":"INFO","message":"Остановка Kafka consumer \n","data":{}}
+{"timestamp":"21:33:33.139","level":"INFO","message":"Application shutdown completed \n","data":{}}
+{"timestamp":"21:14:14.267","level":"INFO","message":"Starting application with configuration ","data":{"config":{"DB":{"Db":"wildberries","Host":"postgres","Password":"password","Port":5432,"User":"user"},"Environment":"production","HTTPPort":8000,"Kafka":{"Brokers":["kafka:29092"],"GroupID":"wildberries-consumer","Topic":"orders"},"Redis":{"Host":"redis","MaxOrders":100,"Port":6379}}}}
+{"timestamp":"21:14:14.365","level":"INFO","message":"Running migrations up... \n","data":{}}
+{"timestamp":"21:14:14.380","level":"INFO","message":"No migrations to apply \n","data":{}}
+{"timestamp":"21:14:14.385","level":"INFO","message":"Attempting to connect to Redis ","data":{"host":"redis","port":6379}}
+{"timestamp":"21:14:14.420","level":"INFO","message":"Successfully connected to Redis \n","data":{}}
+{"timestamp":"21:14:14.420","level":"INFO","message":"Attempting to connect to Postgres ","data":{"database":"wildberries","host":"postgres","port":5432}}
+{"timestamp":"21:14:14.463","level":"INFO","message":"Successfully connected to PostgreSQL database \n","data":{}}
+{"timestamp":"21:14:14.465","level":"INFO","message":"Current cache state ","data":{"cached_orders":0,"max_orders":100}}
+{"timestamp":"21:14:14.503","level":"INFO","message":"No orders to load into cache \n","data":{}}
+{"timestamp":"21:14:14.514","level":"INFO","message":"Application started successfully ","data":{"http_port":8000,"kafka_brokers":["kafka:29092"],"kafka_topic":"orders"}}
+{"timestamp":"21:14:14.515","level":"INFO","message":"Starting Kafka consumer... \n","data":{}}
+{"timestamp":"21:14:14.576","level":"INFO","message":"Запуск Kafka consumer для топика: orders \n","data":{}}
+{"timestamp":"21:14:14.515","level":"INFO","message":"Starting HTTP server... ","data":{"port":8000}}
+{"timestamp":"21:14:14.603","level":"INFO","message":"Starting HTTP server ","data":{"addr":":8000"}}
+{"timestamp":"21:55:55.128","level":"INFO","message":"HTTP Request ","data":{"client_ip":"172.18.0.1","latency":6201,"method":"OPTIONS","status":204}}
+{"timestamp":"21:55:55.139","level":"INFO","message":"HTTP Request ","data":{"client_ip":"172.18.0.1","latency":18701,"method":"GET","status":404}}
+{"timestamp":"21:02:02.696","level":"INFO","message":"HTTP Request ","data":{"client_ip":"172.18.0.1","latency":3600,"method":"GET","status":404}}
+{"timestamp":"21:02:02.955","level":"INFO","message":"HTTP Request ","data":{"client_ip":"172.18.0.1","latency":5099,"method":"GET","status":404}}
+{"timestamp":"21:24:24.543","level":"INFO","message":"Получено сообщение: key=fdfdsdf, offset=0, partition=0 \n","data":{}}
+{"timestamp":"21:24:24.545","level":"INFO","message":"Обработка заказа: b563feb7b2b84b6test \n","data":{}}
+{"timestamp":"21:24:24.557","level":"ERROR","message":"Failed to get order from repository ","data":{"error":{"message":"order not found","type":"NOT_FOUND"},"uid":"b563feb7b2b84b6test"}}
+{"timestamp":"21:24:24.558","level":"INFO","message":"Creating new order ","data":{"uid":"b563feb7b2b84b6test"}}
+{"timestamp":"21:24:24.604","level":"DEBUG","message":"Order added to cache ","data":{"uid":"b563feb7b2b84b6test"}}
+{"timestamp":"21:24:24.605","level":"INFO","message":"Order created successfully ","data":{"uid":"b563feb7b2b84b6test"}}
+{"timestamp":"21:24:24.607","level":"INFO","message":"Заказ b563feb7b2b84b6test успешно сохранен \n","data":{}}
+{"timestamp":"21:24:24.610","level":"INFO","message":"Успешно обработано сообщение: offset=0, partition=0 \n","data":{}}
+{"timestamp":"21:29:29.808","level":"INFO","message":"HTTP Request ","data":{"client_ip":"172.18.0.1","latency":6700,"method":"OPTIONS","status":204}}
+{"timestamp":"21:29:29.815","level":"INFO","message":"HTTP Request ","data":{"client_ip":"172.18.0.1","latency":4200,"method":"GET","status":404}}
+{"timestamp":"21:36:36.186","level":"INFO","message":"HTTP Request ","data":{"client_ip":"172.18.0.1","latency":6001,"method":"OPTIONS","status":204}}
+{"timestamp":"21:36:36.193","level":"INFO","message":"HTTP Request ","data":{"client_ip":"172.18.0.1","latency":3700,"method":"GET","status":404}}
+{"timestamp":"21:31:31.580","level":"INFO","message":"HTTP Request ","data":{"client_ip":"172.18.0.1","latency":7201,"method":"OPTIONS","status":204}}
+{"timestamp":"21:31:31.588","level":"INFO","message":"HTTP Request ","data":{"client_ip":"172.18.0.1","latency":5501,"method":"GET","status":404}}
+{"timestamp":"21:43:43.457","level":"INFO","message":"HTTP Request ","data":{"client_ip":"172.18.0.1","latency":5900,"method":"OPTIONS","status":204}}
+{"timestamp":"21:43:43.465","level":"INFO","message":"HTTP Request ","data":{"client_ip":"172.18.0.1","latency":4300,"method":"GET","status":404}}
+{"timestamp":"21:46:46.332","level":"INFO","message":"HTTP Request ","data":{"client_ip":"172.18.0.1","latency":3100,"method":"GET","status":404}}
+{"timestamp":"21:36:36.250","level":"INFO","message":"HTTP Request ","data":{"client_ip":"172.18.0.1","latency":7700,"method":"OPTIONS","status":204}}
+{"timestamp":"21:36:36.259","level":"INFO","message":"HTTP Request ","data":{"client_ip":"172.18.0.1","latency":4500,"method":"GET","status":404}}
+{"timestamp":"21:50:50.734","level":"INFO","message":"HTTP Request ","data":{"client_ip":"172.18.0.1","latency":6800,"method":"OPTIONS","status":204}}
+{"timestamp":"21:50:50.743","level":"INFO","message":"HTTP Request ","data":{"client_ip":"172.18.0.1","latency":4200,"method":"GET","status":404}}
+{"timestamp":"21:07:07.619","level":"INFO","message":"HTTP Request ","data":{"client_ip":"172.18.0.1","latency":4101,"method":"GET","status":404}}
+{"timestamp":"21:12:12.599","level":"INFO","message":"Order retrieved from cache ","data":{"uid":"b563feb7b2b84b6test"}}
+{"timestamp":"21:12:12.600","level":"INFO","message":"Order retrieved via API ","data":{"client_ip":"172.18.0.1","method":"GET","path":"/api/v1/order/b563feb7b2b84b6test","uid":"b563feb7b2b84b6test"}}
+{"timestamp":"21:12:12.600","level":"INFO","message":"HTTP Request ","data":{"client_ip":"172.18.0.1","latency":2240307,"method":"GET","status":200}}
+{"timestamp":"21:12:12.707","level":"INFO","message":"HTTP Request ","data":{"client_ip":"172.18.0.1","latency":4101,"method":"GET","status":404}}
+{"timestamp":"21:40:40.827","level":"INFO","message":"HTTP Request ","data":{"client_ip":"172.18.0.1","latency":6601,"method":"OPTIONS","status":204}}
+{"timestamp":"21:40:40.836","level":"INFO","message":"Order retrieved from cache ","data":{"uid":"b563feb7b2b84b6test"}}
+{"timestamp":"21:40:40.840","level":"INFO","message":"Order retrieved via API ","data":{"client_ip":"172.18.0.1","method":"GET","path":"/api/v1/order/b563feb7b2b84b6test","uid":"b563feb7b2b84b6test"}}
+{"timestamp":"21:40:40.853","level":"INFO","message":"HTTP Request ","data":{"client_ip":"172.18.0.1","latency":17721048,"method":"GET","status":200}}
+{"timestamp":"21:52:52.109","level":"INFO","message":"Shutting down application... \n","data":{}}
+{"timestamp":"21:52:52.110","level":"INFO","message":"Stopping HTTP server \n","data":{}}
+{"timestamp":"21:52:52.120","level":"INFO","message":"HTTP server stopped \n","data":{}}
+{"timestamp":"21:52:52.111","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: context canceled \n","data":{}}
+{"timestamp":"21:52:52.140","level":"INFO","message":"Остановка Kafka consumer \n","data":{}}
+{"timestamp":"21:52:52.904","level":"INFO","message":"Application shutdown completed \n","data":{}}
