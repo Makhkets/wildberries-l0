@@ -181,3 +181,41 @@
 {"timestamp":"21:52:52.111","level":"INFO","message":"Ошибка чтения сообщения из Kafka: fetching message: context canceled \n","data":{}}
 {"timestamp":"21:52:52.140","level":"INFO","message":"Остановка Kafka consumer \n","data":{}}
 {"timestamp":"21:52:52.904","level":"INFO","message":"Application shutdown completed \n","data":{}}
+{"timestamp":"21:12:12.968","level":"INFO","message":"Starting application with configuration ","data":{"config":{"DB":{"Db":"wildberries","Host":"postgres","Password":"password","Port":5432,"User":"user"},"Environment":"production","HTTPPort":8000,"Kafka":{"Brokers":["kafka:29092"],"GroupID":"wildberries-consumer","Topic":"orders"},"Redis":{"Host":"redis","MaxOrders":100,"Port":6379}}}}
+{"timestamp":"21:13:13.062","level":"INFO","message":"Running migrations up... \n","data":{}}
+{"timestamp":"21:13:13.071","level":"INFO","message":"No migrations to apply \n","data":{}}
+{"timestamp":"21:13:13.072","level":"INFO","message":"Attempting to connect to Redis ","data":{"host":"redis","port":6379}}
+{"timestamp":"21:13:13.123","level":"INFO","message":"Successfully connected to Redis \n","data":{}}
+{"timestamp":"21:13:13.124","level":"INFO","message":"Attempting to connect to Postgres ","data":{"database":"wildberries","host":"postgres","port":5432}}
+{"timestamp":"21:13:13.154","level":"INFO","message":"Successfully connected to PostgreSQL database \n","data":{}}
+{"timestamp":"21:13:13.158","level":"INFO","message":"Current cache state ","data":{"cached_orders":1,"max_orders":100}}
+{"timestamp":"21:13:13.200","level":"INFO","message":"Orders loaded into cache successfully ","data":{"added":1,"requested":1,"total_slots":100}}
+{"timestamp":"21:13:13.202","level":"INFO","message":"Application started successfully ","data":{"http_port":8000,"kafka_brokers":["kafka:29092"],"kafka_topic":"orders"}}
+{"timestamp":"21:13:13.202","level":"INFO","message":"Starting Kafka consumer... \n","data":{}}
+{"timestamp":"21:13:13.218","level":"INFO","message":"Запуск Kafka consumer для топика: orders \n","data":{}}
+{"timestamp":"21:13:13.202","level":"INFO","message":"Starting HTTP server... ","data":{"port":8000}}
+{"timestamp":"21:13:13.273","level":"INFO","message":"Starting HTTP server ","data":{"addr":":8000"}}
+{"timestamp":"21:30:30.648","level":"INFO","message":"HTTP Request ","data":{"client_ip":"172.18.0.1","latency":4700,"method":"OPTIONS","status":204}}
+{"timestamp":"21:30:30.655","level":"INFO","message":"Order retrieved from cache ","data":{"uid":"b563feb7b2b84b6test"}}
+{"timestamp":"21:30:30.656","level":"INFO","message":"Order retrieved via API ","data":{"client_ip":"172.18.0.1","method":"GET","path":"/api/v1/order/b563feb7b2b84b6test","uid":"b563feb7b2b84b6test"}}
+{"timestamp":"21:30:30.669","level":"INFO","message":"HTTP Request ","data":{"client_ip":"172.18.0.1","latency":14022647,"method":"GET","status":200}}
+{"timestamp":"21:35:35.328","level":"INFO","message":"HTTP Request ","data":{"client_ip":"172.18.0.1","latency":11300,"method":"OPTIONS","status":204}}
+{"timestamp":"21:35:35.341","level":"ERROR","message":"Failed to get order from repository ","data":{"error":{"message":"order not found","type":"NOT_FOUND"},"uid":"b563feb7b2b84b6test123"}}
+{"timestamp":"21:35:35.342","level":"INFO","message":"Client error ","data":{"client_ip":"172.18.0.1","error_type":"NOT_FOUND","message":"order not found","method":"GET","path":"/api/v1/order/b563feb7b2b84b6test123","status_code":404,"user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:142.0) Gecko/20100101 Firefox/142.0"}}
+{"timestamp":"21:35:35.343","level":"INFO","message":"HTTP Request ","data":{"client_ip":"172.18.0.1","latency":7532515,"method":"GET","status":404}}
+{"timestamp":"21:00:00.934","level":"INFO","message":"HTTP Request ","data":{"client_ip":"172.18.0.1","latency":7002,"method":"OPTIONS","status":204}}
+{"timestamp":"21:00:00.942","level":"ERROR","message":"Failed to get order from repository ","data":{"error":{"message":"order not found","type":"NOT_FOUND"},"uid":"b563feb7b2b84b6test123"}}
+{"timestamp":"21:00:00.947","level":"INFO","message":"Client error ","data":{"client_ip":"172.18.0.1","error_type":"NOT_FOUND","message":"order not found","method":"GET","path":"/api/v1/order/b563feb7b2b84b6test123","status_code":404,"user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:142.0) Gecko/20100101 Firefox/142.0"}}
+{"timestamp":"21:00:00.955","level":"INFO","message":"HTTP Request ","data":{"client_ip":"172.18.0.1","latency":15315285,"method":"GET","status":404}}
+{"timestamp":"21:07:07.994","level":"INFO","message":"Получено сообщение: key=dasdasfs, offset=1, partition=0 \n","data":{}}
+{"timestamp":"21:07:07.997","level":"INFO","message":"Обработка заказа: b563feb7b2b84b6test123 \n","data":{}}
+{"timestamp":"21:08:08.005","level":"ERROR","message":"Failed to get order from repository ","data":{"error":{"message":"order not found","type":"NOT_FOUND"},"uid":"b563feb7b2b84b6test123"}}
+{"timestamp":"21:08:08.007","level":"INFO","message":"Creating new order ","data":{"uid":"b563feb7b2b84b6test123"}}
+{"timestamp":"21:08:08.038","level":"DEBUG","message":"Order added to cache ","data":{"uid":"b563feb7b2b84b6test123"}}
+{"timestamp":"21:08:08.041","level":"INFO","message":"Order created successfully ","data":{"uid":"b563feb7b2b84b6test123"}}
+{"timestamp":"21:08:08.051","level":"INFO","message":"Заказ b563feb7b2b84b6test123 успешно сохранен \n","data":{}}
+{"timestamp":"21:08:08.055","level":"INFO","message":"Успешно обработано сообщение: offset=1, partition=0 \n","data":{}}
+{"timestamp":"21:10:10.520","level":"INFO","message":"HTTP Request ","data":{"client_ip":"172.18.0.1","latency":4801,"method":"OPTIONS","status":204}}
+{"timestamp":"21:10:10.526","level":"INFO","message":"Order retrieved from cache ","data":{"uid":"b563feb7b2b84b6test123"}}
+{"timestamp":"21:10:10.527","level":"INFO","message":"Order retrieved via API ","data":{"client_ip":"172.18.0.1","method":"GET","path":"/api/v1/order/b563feb7b2b84b6test123","uid":"b563feb7b2b84b6test123"}}
+{"timestamp":"21:10:10.529","level":"INFO","message":"HTTP Request ","data":{"client_ip":"172.18.0.1","latency":2967958,"method":"GET","status":200}}
